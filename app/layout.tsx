@@ -57,11 +57,11 @@ const localBusinessSchema = {
   description:
     'MGP supplies new, recycled, and custom wood pallets to warehouses, manufacturers, and distributors in Fontana, CA and surrounding areas. ISPM-15 certified and FSC member.',
   url: 'https://mgpallets.com',
-  telephone: '(555) 000-0000',
-  email: 'info@mgpallets.com',
+  telephone: '(909) 827-1438',
+  email: 'mgp@palletmail.com',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '',
+    streetAddress: '8386 Sultana Avenue',
     addressLocality: 'Fontana',
     addressRegion: 'CA',
     postalCode: '92335',

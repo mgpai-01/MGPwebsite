@@ -130,9 +130,9 @@ export default function QuoteForm() {
           {/* Contact Details */}
           <div style={{ paddingTop: '16px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {[
-              { icon: '📞', text: '(555) 000-0000' },
-              { icon: '✉️', text: 'info@mgpallets.com' },
-              { icon: '📍', text: 'Regional coverage available · Based in Fontana, CA' },
+              { icon: '📞', text: '(909) 827-1438' },
+              { icon: '✉️', text: 'mgp@palletmail.com' },
+              { icon: '📍', text: '8386 Sultana Ave, Fontana, CA 92335' },
             ].map(({ icon, text }) => (
               <div key={text} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
                 <span style={{ fontSize: '18px', lineHeight: '1.5' }}>{icon}</span>

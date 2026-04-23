@@ -117,7 +117,7 @@ export default function Footer() {
           />
           <FooterColumn
             title="Contact"
-            links={['(555) 000-0000', 'info@mgpallets.com', 'Fontana, CA 92335', 'Mon–Fri 7am–5pm']}
+            links={['(909) 827-1438', 'mgp@palletmail.com', '8386 Sultana Ave, Fontana, CA 92335', 'Mon–Fri 7am–5pm']}
           />
         </div>
 
