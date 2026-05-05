@@ -1,25 +1,25 @@
 import type { Metadata } from 'next'
-import { Barlow_Condensed, Barlow } from 'next/font/google'
+import { Public_Sans, Work_Sans } from 'next/font/google'
 import './globals.css'
 
-const barlowCondensed = Barlow_Condensed({
+const publicSans = Public_Sans({
   subsets: ['latin'],
-  weight: ['600', '700', '800', '900'],
-  variable: '--font-barlow-condensed',
+  weight: ['300', '400', '700'],
+  variable: '--font-public-sans',
   display: 'swap',
 })
 
-const barlow = Barlow({
+const workSans = Work_Sans({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
-  variable: '--font-barlow',
+  weight: ['700', '900'],
+  variable: '--font-work-sans',
   display: 'swap',
 })
 
 export const metadata: Metadata = {
-  title: 'Wood Pallets Fontana CA | Manufacturing Green Products',
+  title: 'Manufacturing Green Products | Industrial Pallet Solutions Fontana CA',
   description:
-    'MGP supplies new, recycled & custom wood pallets in Fontana, CA. ISPM-15 certified, FSC member. Serving warehouses, manufacturers & distributors across the Inland Empire. Get a quote today.',
+    'The Inland Empire’s leader in reliable, sustainable, heavy-duty pallet solutions. New, recycled, repaired & custom pallets serving Fontana, Riverside, and all of Southern California.',
   keywords: [
     'pallets Fontana CA',
     'wood pallets Fontana',
@@ -31,22 +31,16 @@ export const metadata: Metadata = {
     'heat treated pallets Fontana',
     'pallet supplier Southern California',
     'Manufacturing Green Products',
-    'pallet supplier Fontana',
-    'pallets Ontario CA',
-    'pallets Rancho Cucamonga',
-    'pallets San Bernardino',
+    'pallets Riverside CA',
   ],
   openGraph: {
     title: 'Manufacturing Green Products | Pallet Supplier in Fontana, CA',
     description:
-      'New, recycled, and custom wood pallets for warehouses, manufacturers, and distributors in Fontana, CA and the Inland Empire.',
+      'New, recycled, repaired and custom wood pallets for warehouses, manufacturers, and distributors in Fontana, Riverside and the Inland Empire.',
     type: 'website',
     locale: 'en_US',
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 }
 
 const localBusinessSchema = {
@@ -55,7 +49,7 @@ const localBusinessSchema = {
   name: 'Manufacturing Green Products',
   alternateName: 'MGP Pallets',
   description:
-    'MGP supplies new, recycled, and custom wood pallets to warehouses, manufacturers, and distributors in Fontana, CA and surrounding areas. ISPM-15 certified and FSC member.',
+    'MGP supplies new, recycled, repaired, and custom wood pallets to warehouses, manufacturers, and distributors in Fontana, CA, Riverside, CA and surrounding areas. ISPM-15 certified and FSC member.',
   url: 'https://mgpallets.com',
   telephone: '(909) 827-1438',
   email: 'mgp@palletmail.com',
@@ -72,12 +66,50 @@ const localBusinessSchema = {
     latitude: 34.0922,
     longitude: -117.435,
   },
+  location: [
+    {
+      '@type': 'Place',
+      name: 'MGP Home Base — Sultana',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '8386 Sultana Ave',
+        addressLocality: 'Fontana',
+        addressRegion: 'CA',
+        postalCode: '92335',
+        addressCountry: 'US',
+      },
+    },
+    {
+      '@type': 'Place',
+      name: 'MGP — Merrill Yard',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '14619 Merrill Ave',
+        addressLocality: 'Fontana',
+        addressRegion: 'CA',
+        postalCode: '92335',
+        addressCountry: 'US',
+      },
+    },
+    {
+      '@type': 'Place',
+      name: 'MGP — Riverside Yard',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '1326 W Citrus St',
+        addressLocality: 'Riverside',
+        addressRegion: 'CA',
+        postalCode: '92507',
+        addressCountry: 'US',
+      },
+    },
+  ],
   areaServed: [
     { '@type': 'City', name: 'Fontana' },
+    { '@type': 'City', name: 'Riverside' },
     { '@type': 'City', name: 'San Bernardino' },
     { '@type': 'City', name: 'Ontario' },
     { '@type': 'City', name: 'Rancho Cucamonga' },
-    { '@type': 'City', name: 'Riverside' },
     { '@type': 'City', name: 'Colton' },
     { '@type': 'City', name: 'Rialto' },
     { '@type': 'City', name: 'Los Angeles' },
@@ -86,38 +118,10 @@ const localBusinessSchema = {
     '@type': 'OfferCatalog',
     name: 'Pallet Products & Services',
     itemListElement: [
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Product',
-          name: 'New Pallets',
-          description: 'GMA Standard 48"×40", custom sizing, HT/MB certified, any wood species',
-        },
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Product',
-          name: 'Recycled Pallets',
-          description: 'Grade A & B recycled pallets, sorted by size, high volume supply',
-        },
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Product',
-          name: 'Repaired Pallets',
-          description: 'On-site pickup, fast turnaround, graded to spec, volume discounts',
-        },
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Product',
-          name: 'Custom & Specialty Pallets',
-          description: 'CAD-ready design, block or stringer, chemical-resistant coatings, private label stamping',
-        },
-      },
+      { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'New Pallets' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'Recycled Pallets' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'Repaired Pallets' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'Custom & Specialty Pallets' } },
     ],
   },
   priceRange: '$$',
@@ -139,14 +143,14 @@ const localBusinessSchema = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${barlowCondensed.variable} ${barlow.variable}`}>
+    <html lang="en" className={`light ${publicSans.variable} ${workSans.variable}`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
       </head>
-      <body>{children}</body>
+      <body className="bg-background text-on-background antialiased">{children}</body>
     </html>
   )
 }
