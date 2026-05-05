@@ -1,33 +1,10 @@
-function FooterColumn({ title, links }: { title: string; links: string[] }) {
+function FooterColumn({ title, links }: { title: string; links: { label: string; href: string }[] }) {
   return (
-    <div>
-      <h4
-        className="font-condensed font-bold uppercase"
-        style={{
-          fontSize: '12px',
-          letterSpacing: '0.12em',
-          color: '#6a9e78',
-          marginBottom: '16px',
-        }}
-      >
-        {title}
-      </h4>
-      <ul
-        style={{
-          listStyle: 'none',
-          padding: 0,
-          margin: 0,
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '10px',
-        }}
-      >
-        {links.map((link) => (
-          <li key={link}>
-            <a href="#" className="footer-link font-sans" style={{ fontSize: '14px' }}>
-              {link}
-            </a>
-          </li>
+    <div className="flex flex-col gap-stack-sm">
+      <h4 className="font-label-caps text-label-caps uppercase text-primary-fixed-dim tracking-[0.12em]">{title}</h4>
+      <ul className="flex flex-col gap-2">
+        {links.map((l) => (
+          <li key={l.label}><a href={l.href} className="footer-link font-body-md text-[14px] text-inverse-on-surface/70 hover:text-primary-fixed-dim transition-colors no-underline">{l.label}</a></li>
         ))}
       </ul>
     </div>
@@ -36,125 +13,26 @@ function FooterColumn({ title, links }: { title: string; links: string[] }) {
 
 export default function Footer() {
   return (
-    <footer style={{ backgroundColor: '#141f17', padding: '64px 40px 36px' }}>
-      <div style={{ maxWidth: '1360px', margin: '0 auto' }}>
-        {/* Main Grid */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '2fr 1fr 1fr 1fr',
-            gap: '48px',
-            marginBottom: '48px',
-          }}
-        >
-          {/* Brand Column */}
-          <div>
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
-                marginBottom: '16px',
-              }}
-            >
-              <div
-                style={{
-                  width: '38px',
-                  height: '38px',
-                  backgroundColor: '#2a6b40',
-                  borderRadius: '7px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
-                }}
-              >
-                <span
-                  className="font-condensed font-black text-white"
-                  style={{ fontSize: '12px' }}
-                >
-                  MGP
-                </span>
-              </div>
-              <div style={{ lineHeight: '1.15' }}>
-                <div
-                  className="font-condensed font-black text-white"
-                  style={{ fontSize: '17px' }}
-                >
-                  Manufacturing
-                </div>
-                <div
-                  className="font-condensed font-black"
-                  style={{ fontSize: '17px', color: '#6a9e78' }}
-                >
-                  Green Products
-                </div>
-              </div>
+    <footer className="block w-full border-t-4 border-primary bg-inverse-surface text-primary-fixed">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-stack-lg px-gutter py-section-padding w-full max-w-container-max mx-auto">
+        <div className="flex flex-col gap-stack-sm">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-primary flex items-center justify-center flex-shrink-0"><span className="font-headline-md text-white text-xs font-black">MGP</span></div>
+            <div className="leading-tight">
+              <div className="font-headline-md font-black text-on-primary text-base">Manufacturing</div>
+              <div className="font-headline-md font-black text-primary-fixed-dim text-base">Green Products</div>
             </div>
-            <p
-              className="font-sans"
-              style={{
-                fontSize: '14px',
-                color: 'rgba(255,255,255,.42)',
-                lineHeight: '1.7',
-                maxWidth: '280px',
-                fontWeight: 300,
-                margin: 0,
-              }}
-            >
-              Your trusted pallet partner in Fontana, CA. New, recycled, repaired, and custom
-              pallets backed by sustainable forestry practices.
-            </p>
           </div>
-
-          <FooterColumn
-            title="Products"
-            links={['New Pallets', 'Recycled Pallets', 'Repaired Pallets', 'Custom & Specialty']}
-          />
-          <FooterColumn
-            title="Company"
-            links={['About Us', 'Sustainability', 'Industries Served', 'Get a Quote']}
-          />
-          <FooterColumn
-            title="Contact"
-            links={['(909) 827-1438', 'mgp@palletmail.com', '8386 Sultana Ave, Fontana, CA 92335', 'Mon–Fri 6am–6pm · Sat 6am–3pm']}
-          />
+          <p className="font-body-md text-[14px] text-inverse-on-surface/60 max-w-xs">Your trusted pallet partner in the Inland Empire. New, recycled, repaired, and custom pallets backed by sustainable forestry practices.</p>
         </div>
-
-        {/* Bottom Bar */}
-        <div
-          style={{
-            borderTop: '1px solid rgba(255,255,255,.08)',
-            paddingTop: '24px',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-            gap: '12px',
-          }}
-        >
-          <p
-            className="font-sans"
-            style={{
-              fontSize: '13px',
-              color: 'rgba(255,255,255,.3)',
-              fontWeight: 300,
-              margin: 0,
-            }}
-          >
-            © 2026 Manufacturing Green Products. All rights reserved.
-          </p>
-          <p
-            className="font-condensed font-bold uppercase"
-            style={{
-              fontSize: '12px',
-              letterSpacing: '0.10em',
-              color: 'rgba(255,255,255,.3)',
-              margin: 0,
-            }}
-          >
-            ISPM-15 Certified · FSC Member
-          </p>
+        <FooterColumn title="Products" links={[{ label: 'New Pallets', href: '#products' },{ label: 'Recycled Pallets', href: '#products' },{ label: 'Repaired Pallets', href: '#products' },{ label: 'Custom & Specialty', href: '#products' }]} />
+        <FooterColumn title="Company" links={[{ label: 'About', href: '#about' },{ label: 'Sustainability', href: '#sustainability' },{ label: 'Industries', href: '#industries' },{ label: 'Locations', href: '#locations' },{ label: 'Get a Quote', href: '#quote' }]} />
+        <FooterColumn title="Contact" links={[{ label: '(909) 827-1438', href: 'tel:+19098271438' },{ label: 'mgp@palletmail.com', href: 'mailto:mgp@palletmail.com' },{ label: '8386 Sultana Ave, Fontana CA', href: '#locations' },{ label: '14619 Merrill Ave, Fontana CA', href: '#locations' },{ label: '1326 W Citrus St, Riverside CA', href: '#locations' }]} />
+      </div>
+      <div className="border-t border-outline-variant/20">
+        <div className="max-w-container-max mx-auto px-gutter py-stack-md flex flex-col md:flex-row justify-between gap-stack-sm">
+          <p className="font-body-md text-[13px] text-inverse-on-surface/40">© {new Date().getFullYear()} Manufacturing Green Products. All rights reserved.</p>
+          <p className="font-label-caps text-[12px] uppercase tracking-[0.10em] text-inverse-on-surface/40">ISPM-15 Certified · FSC Member</p>
         </div>
       </div>
     </footer>

@@ -1,101 +1,28 @@
 const industries = [
-  { name: 'Food & Beverage', emoji: '🥩' },
-  { name: 'Retail & eCommerce', emoji: '📦' },
-  { name: 'Automotive', emoji: '🔧' },
-  { name: 'Agriculture', emoji: '🌾' },
-  { name: 'Pharmaceutical', emoji: '💊' },
-  { name: 'Building Materials', emoji: '🏗' },
-  { name: '3PL / Logistics', emoji: '🚚' },
-  { name: 'Manufacturing', emoji: '🏭' },
+  'Food & Beverage',
+  'Retail',
+  'Automotive',
+  'Agriculture',
+  'Pharma',
+  'Building Materials',
+  '3PL/Logistics',
+  'Manufacturing',
 ]
 
 export default function Industries() {
   return (
-    <div style={{ backgroundColor: '#2a6b40', padding: '96px 40px' }}>
-      <div style={{ maxWidth: '1360px', margin: '0 auto' }}>
-        {/* Header */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '40px',
-            marginBottom: '56px',
-            alignItems: 'end',
-          }}
-        >
-          <div>
-            <p
-              className="font-condensed font-bold uppercase"
-              style={{
-                fontSize: '12px',
-                letterSpacing: '0.16em',
-                color: 'rgba(255,255,255,.5)',
-                marginBottom: '8px',
-              }}
-            >
-              Industries Served
-            </p>
-            <h2
-              className="font-condensed font-black text-white"
-              style={{
-                fontSize: 'clamp(34px, 4vw, 56px)',
-                lineHeight: '1.05',
-                margin: 0,
-              }}
-            >
-              We serve
-              <br />
-              every sector
-            </h2>
-          </div>
-          <p
-            className="font-sans"
-            style={{
-              fontSize: '16px',
-              color: 'rgba(255,255,255,.6)',
-              lineHeight: '1.7',
-              fontWeight: 300,
-              textAlign: 'right',
-              margin: 0,
-            }}
-          >
-            From food-grade requirements to heavy industrial loads, MGP delivers the right pallet
-            solution for your specific industry needs.
-          </p>
+    <section id="industries" className="py-section-padding px-gutter bg-primary-container text-on-primary-container">
+      <div className="max-w-container-max mx-auto flex flex-col md:flex-row gap-stack-lg items-center">
+        <div className="md:w-1/3 flex flex-col gap-stack-sm text-on-primary">
+          <h2 className="font-headline-lg text-headline-lg">Industries We Serve</h2>
+          <p className="font-body-md text-body-md opacity-90">From food-grade requirements to heavy industrial loads, MGP delivers the right pallet solution across every sector of the supply chain.</p>
         </div>
-
-        {/* Industry Pills */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '16px',
-          }}
-        >
-          {industries.map(({ name, emoji }) => (
-            <div
-              key={name}
-              className="industry-pill"
-              style={{
-                backgroundColor: 'rgba(255,255,255,.06)',
-                borderRadius: '12px',
-                padding: '24px 22px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
-              }}
-            >
-              <span style={{ fontSize: '24px', lineHeight: '1' }}>{emoji}</span>
-              <span
-                className="font-condensed font-bold text-white"
-                style={{ fontSize: '17px' }}
-              >
-                {name}
-              </span>
-            </div>
+        <div className="md:w-2/3 grid grid-cols-2 md:grid-cols-4 gap-stack-sm w-full">
+          {industries.map((name) => (
+            <div key={name} className="industry-pill border border-on-primary/30 py-stack-sm px-unit text-center text-on-primary font-label-caps text-label-caps uppercase bg-primary-container hover:bg-primary cursor-default">{name}</div>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   )
 }

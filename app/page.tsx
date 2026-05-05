@@ -1,33 +1,27 @@
-import Nav from '@/components/Nav'
+import Header from '@/components/Header'
 import Hero from '@/components/Hero'
+import StatStrip from '@/components/StatStrip'
 import Products from '@/components/Products'
 import Industries from '@/components/Industries'
-import About from '@/components/About'
 import Sustainability from '@/components/Sustainability'
+import About from '@/components/About'
+import LocationsMap from '@/components/LocationsMap'
 import QuoteForm from '@/components/QuoteForm'
 import Footer from '@/components/Footer'
 
 export default function Home() {
   return (
     <>
-      <Nav />
+      <Header />
       <main>
         <Hero />
-        <section id="products">
-          <Products />
-        </section>
-        <section id="industries">
-          <Industries />
-        </section>
-        <section id="about">
-          <About />
-        </section>
-        <section id="sustainability">
-          <Sustainability />
-        </section>
-        <section id="quote">
-          <QuoteForm />
-        </section>
+        <StatStrip />
+        <Products />
+        <Industries />
+        <Sustainability />
+        <About />
+        <LocationsMap />
+        <QuoteForm />
       </main>
       <Footer />
     </>
