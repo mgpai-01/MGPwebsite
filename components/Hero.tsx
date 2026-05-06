@@ -1,73 +1,13 @@
-'use client'
-
-import { useEffect, useRef } from 'react'
-
 export default function Hero() {
-  const heroRef = useRef<HTMLElement>(null)
-  const videoRef = useRef<HTMLVideoElement>(null)
-
-  useEffect(() => {
-    let st: { kill: () => void } | null = null
-    let cancelled = false
-
-    ;(async () => {
-      const gsapMod = await import('gsap')
-      const stMod = await import('gsap/ScrollTrigger')
-      if (cancelled) return
-
-      const gsap = gsapMod.default || gsapMod
-      const ScrollTrigger = (stMod as any).ScrollTrigger || (stMod as any).default
-      gsap.registerPlugin(ScrollTrigger)
-
-      const hero = heroRef.current
-      const video = videoRef.current
-      if (!hero || !video) return
-
-      const setup = () => {
-        if (!video.duration || isNaN(video.duration)) return
-
-        st = ScrollTrigger.create({
-          trigger: hero,
-          start: 'top top',
-          end: '+=1800',
-          scrub: true,
-          pin: true,
-          anticipatePin: 1,
-          onUpdate: (self: { progress: number }) => {
-            if (video.duration) {
-              const t = self.progress * video.duration
-              if (Math.abs(video.currentTime - t) > 0.01) {
-                video.currentTime = t
-              }
-            }
-          },
-        })
-      }
-
-      if (video.readyState >= 1 && video.duration) {
-        setup()
-      } else {
-        video.addEventListener('loadedmetadata', setup, { once: true })
-      }
-    })()
-
-    return () => {
-      cancelled = true
-      if (st) st.kill()
-    }
-  }, [])
-
   return (
-    <section
-      ref={heroRef}
-      className="relative overflow-hidden bg-white min-h-[100vh]"
-    >
-      <div className="absolute inset-0 overflow-hidden">
+    <section className="relative overflow-hidden bg-white min-h-[100vh]">
+      <div className="absolute inset-0 overflow-hidden bg-white">
         <video
-          ref={videoRef}
+          autoPlay
           muted
+          loop
           playsInline
-          preload="auto"
+          preload="metadata"
           className="absolute top-0 right-0 h-full w-[120%] object-cover translate-x-[8%]"
         >
           <source src="/mp_.mp4" type="video/mp4" />
