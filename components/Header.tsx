@@ -2,11 +2,7 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 w-full flex justify-between items-center px-gutter py-stack-sm bg-surface/95 backdrop-blur-sm z-50 border-b-2 border-outline-variant">
       <a href="#" className="flex items-center gap-3 no-underline">
-        <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
-          <span className="font-headline-md text-white text-xs font-black tracking-tight">
-            MGP
-          </span>
-        </div>
+        <img src="/logo.png" alt="Manufacturing Green Products" className="h-12 w-12 object-contain" />
         <div className="leading-tight hidden sm:block">
           <div className="font-headline-md font-black text-on-surface text-base">
             Manufacturing
