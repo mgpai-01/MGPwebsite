@@ -17,7 +17,7 @@ export default function Footer() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-stack-lg px-gutter py-section-padding w-full max-w-container-max mx-auto">
         <div className="flex flex-col gap-stack-sm">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary flex items-center justify-center flex-shrink-0"><span className="font-headline-md text-white text-xs font-black">MGP</span></div>
+            <img src="/logo.png" alt="Manufacturing Green Products" className="h-14 w-14 object-contain" />
             <div className="leading-tight">
               <div className="font-headline-md font-black text-on-primary text-base">Manufacturing</div>
               <div className="font-headline-md font-black text-primary-fixed-dim text-base">Green Products</div>
