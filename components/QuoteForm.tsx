@@ -4,12 +4,32 @@ import { useState, FormEvent, ChangeEvent } from 'react'
 
 export default function QuoteForm() {
   const [submitted, setSubmitted] = useState(false)
-  const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', productType: '', quantity: '', notes: '' })
+  const [error, setError] = useState<string | null>(null)
+  const [busy, setBusy] = useState(false)
+  const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', productType: '', quantity: '', notes: '', website: '' })
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
 
-  const handleSubmit = (e: FormEvent) => { e.preventDefault(); setSubmitted(true) }
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+    setError(null)
+    setBusy(true)
+    try {
+      const res = await fetch('/api/quote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok || !data.ok) throw new Error(data.error || 'Submit failed')
+      setSubmitted(true)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Submit failed')
+    } finally {
+      setBusy(false)
+    }
+  }
 
   const inputCls = 'w-full bg-surface-container-lowest border border-outline-variant px-stack-sm py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors'
   const labelCls = 'block font-label-caps text-[12px] uppercase tracking-[0.10em] text-on-primary/60 mb-2'
@@ -47,6 +67,8 @@ export default function QuoteForm() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-stack-sm">
+              {/* honeypot */}
+              <input type="text" name="website" value={form.website} onChange={handleChange} tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
               <div><label className={labelCls}>Name *</label><input className={inputCls} required name="name" value={form.name} onChange={handleChange} placeholder="Your name" /></div>
               <div><label className={labelCls}>Company *</label><input className={inputCls} required name="company" value={form.company} onChange={handleChange} placeholder="Company name" /></div>
               <div><label className={labelCls}>Email *</label><input className={inputCls} required type="email" name="email" value={form.email} onChange={handleChange} placeholder="you@company.com" /></div>
@@ -54,7 +76,8 @@ export default function QuoteForm() {
               <div><label className={labelCls}>Product Type</label><select className={inputCls} name="productType" value={form.productType} onChange={handleChange}><option value="">Select product type</option><option>New Pallets</option><option>Recycled Pallets</option><option>Repaired Pallets</option><option>Custom / Specialty</option></select></div>
               <div><label className={labelCls}>Estimated Quantity</label><select className={inputCls} name="quantity" value={form.quantity} onChange={handleChange}><option value="">Select quantity</option><option>Under 100</option><option>100–500</option><option>500–2,000</option><option>2,000–10,000</option><option>10,000+</option></select></div>
               <div className="md:col-span-2"><label className={labelCls}>Additional Notes</label><textarea className={inputCls} rows={4} name="notes" value={form.notes} onChange={handleChange} placeholder="Tell us about your specific requirements, delivery location, or any other details…" /></div>
-              <div className="md:col-span-2"><button type="submit" className="bg-primary text-on-primary px-stack-md py-stack-sm font-label-caps text-label-caps uppercase hover:bg-primary-container transition-colors shadow-[4px_4px_0_0_theme(colors.surface-tint)]">Send Request</button></div>
+              {error && <div className="md:col-span-2 text-error-container font-body-md text-[14px]">{error}</div>}
+              <div className="md:col-span-2"><button type="submit" disabled={busy} className="bg-primary text-on-primary px-stack-md py-stack-sm font-label-caps text-label-caps uppercase hover:bg-primary-container transition-colors shadow-[4px_4px_0_0_theme(colors.surface-tint)] disabled:opacity-60">{busy ? 'Sending…' : 'Send Request'}</button></div>
             </form>
           )}
         </div>
