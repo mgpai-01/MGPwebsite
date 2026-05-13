@@ -1,8 +1,8 @@
 const stats = [
-  { value: '20+', label: 'Years Experience' },
-  { value: '50K+', label: 'Pallets Per Month' },
+  { value: '45+', label: 'Years Experience' },
+  { value: '250K+', label: 'Pallets Per Month' },
   { value: '100%', label: 'ISPM-15 Compliant' },
-  { value: '48hr', label: 'Turnaround' },
+  { value: '24hr', label: 'Turnaround' },
 ]
 
 export default function StatStrip() {
