@@ -12,7 +12,7 @@ export default function About() {
         <div className="flex flex-col gap-stack-sm">
           <span className="font-label-caps text-label-caps uppercase text-primary tracking-[0.16em]">Why Choose MGP</span>
           <h2 className="font-headline-lg text-headline-lg text-primary">Built on reliability</h2>
-          <p className="font-body-md text-body-md text-on-surface-variant">Family-run from Fontana, California with 20+ years serving the Inland Empire. We build the backbone of California’s supply chain — one pallet at a time.</p>
+          <p className="font-body-md text-body-md text-on-surface-variant">Family-run from Fontana, California with 45+ years serving the Inland Empire. We build the backbone of California’s supply chain — one pallet at a time.</p>
         </div>
         <div className="flex flex-col gap-stack-md">
           {reasons.map(({ number, title, body }) => (
