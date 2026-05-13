@@ -1,6 +1,6 @@
 const items = [
   { title: 'WPA Director', body: 'A seat on the Western Pallet Association board — helping shape industry standards, safety practices, and sustainability policy across the West Coast supply chain.' },
-  { title: 'Zero Landfill Policy', body: 'Broken pallets are chipped, recycled, or repurposed — nothing goes to waste.' },
+  { title: 'Woodpack Global Member', body: 'Part of an international network of vetted pallet manufacturers — sharing best practices, capacity, and consistent quality standards for clients shipping worldwide.' },
   { title: 'Carbon Tracking', body: 'We measure and report our Scope 1 & 2 emissions annually.' },
   { title: 'Local Sourcing', body: 'Regional mills reduce transportation emissions and support local economies.' },
 ]
