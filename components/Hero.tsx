@@ -19,7 +19,7 @@ export default function Hero() {
         <div className="max-w-container-max mx-auto flex flex-col gap-stack-lg">
           <div className="max-w-3xl flex flex-col gap-stack-sm">
             <span className="inline-flex items-center self-start border border-primary/30 rounded-full px-4 py-1.5 font-label-caps text-[12px] uppercase tracking-[0.16em] text-primary bg-white/80 backdrop-blur-sm">
-              ISPM-15 Certified · FSC Member
+              ISPM-15 Certified · WPA Director · Woodpack Global Member
             </span>
             <h1 className="font-headline-xl text-headline-xl uppercase text-on-surface">
               The Gold Standard in Industrial Pallet Solutions

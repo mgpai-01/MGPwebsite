@@ -32,7 +32,7 @@ export default function Footer() {
       <div className="border-t border-outline-variant/20">
         <div className="max-w-container-max mx-auto px-gutter py-stack-md flex flex-col md:flex-row justify-between gap-stack-sm">
           <p className="font-body-md text-[13px] text-inverse-on-surface/40">© {new Date().getFullYear()} Manufacturing Green Products. All rights reserved.</p>
-          <p className="font-label-caps text-[12px] uppercase tracking-[0.10em] text-inverse-on-surface/40">ISPM-15 Certified · FSC Member</p>
+          <p className="font-label-caps text-[12px] uppercase tracking-[0.10em] text-inverse-on-surface/40">ISPM-15 Certified · WPA Director · Woodpack Global Member</p>
         </div>
       </div>
     </footer>
