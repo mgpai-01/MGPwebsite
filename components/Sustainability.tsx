@@ -1,5 +1,5 @@
 const items = [
-  { title: 'FSC-Certified Lumber', body: 'Forest Stewardship Council certification across our entire supply chain.' },
+  { title: 'WPA Director', body: 'A seat on the Western Pallet Association board — helping shape industry standards, safety practices, and sustainability policy across the West Coast supply chain.' },
   { title: 'Zero Landfill Policy', body: 'Broken pallets are chipped, recycled, or repurposed — nothing goes to waste.' },
   { title: 'Carbon Tracking', body: 'We measure and report our Scope 1 & 2 emissions annually.' },
   { title: 'Local Sourcing', body: 'Regional mills reduce transportation emissions and support local economies.' },
