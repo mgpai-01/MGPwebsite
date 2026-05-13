@@ -20,8 +20,8 @@ export default function Sustainability() {
       <div className="max-w-container-max mx-auto flex flex-col gap-stack-lg">
         <div className="max-w-2xl flex flex-col gap-stack-sm">
           <span className="font-label-caps text-label-caps uppercase text-primary tracking-[0.16em]">Sustainability</span>
-          <h2 className="font-headline-lg text-headline-lg text-primary">Manufacturing Green is more than a name</h2>
-          <p className="font-body-md text-body-md text-on-surface-variant">Sustainability isn’t a marketing claim — it’s the foundation of how we source, manufacture, and operate every day.</p>
+          <h2 className="font-headline-lg text-headline-lg text-primary">Standards. Stewardship. Leadership.</h2>
+          <p className="font-body-md text-body-md text-on-surface-variant">Active seats on the industry’s top boards, plus rigorous environmental practices — from forest sourcing to final delivery. Sustainability runs deeper than a claim; it’s how we operate.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-stack-md">
           {items.map(({ title, body }) => (
