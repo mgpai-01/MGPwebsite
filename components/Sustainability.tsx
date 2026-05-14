@@ -30,9 +30,9 @@ export default function Sustainability() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-stack-md">
           {items.map(({ title, body, image }) => (
             <div key={title} className="border border-outline-variant bg-surface-container-lowest p-stack-md flex flex-col gap-stack-sm">
-              <div className="w-12 h-12 bg-secondary-container text-primary flex items-center justify-center overflow-hidden">
+              <div className={image ? "w-16 h-16 flex items-center justify-center overflow-hidden" : "w-12 h-12 bg-secondary-container text-primary flex items-center justify-center"}>
                 {image ? (
-                  <img src={image} alt={title} className="w-full h-full object-contain" />
+                  <img src={image} alt={title} className="max-w-full max-h-full object-contain" />
                 ) : (
                   <LeafIcon />
                 )}
