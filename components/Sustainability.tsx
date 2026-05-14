@@ -1,8 +1,9 @@
-const items: { title: string; body: string; image?: string }[] = [
+const items: { title: string; body: string; image?: string; link?: { href: string; label: string } }[] = [
   {
     title: 'WPA Director',
     body: 'A seat on the Western Pallet Association board — helping shape industry standards, safety practices, and sustainability policy across the West Coast supply chain.',
     image: '/wpa.png',
+    link: { href: 'https://www.westernpallet.org/board-directors/', label: 'View board directors' },
   },
   { title: 'Woodpack Global Member', body: 'Part of an international network of vetted pallet manufacturers — sharing best practices, capacity, and consistent quality standards for clients shipping worldwide.', image: '/woodpack.png' },
   { title: 'Samsara Fleet Tracking', body: 'Real-time GPS, route optimization, and verified ETAs across every MGP truck. Customers see exactly when pallets arrive, every time.', image: '/samsara.png' },
@@ -28,7 +29,7 @@ export default function Sustainability() {
           <p className="font-body-md text-body-md text-on-surface-variant">Active seats on the industry’s top boards, plus rigorous environmental practices — from forest sourcing to final delivery. Sustainability runs deeper than a claim; it’s how we operate.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-stack-md">
-          {items.map(({ title, body, image }) => (
+          {items.map(({ title, body, image, link }) => (
             <div key={title} className="border border-outline-variant bg-surface-container-lowest p-stack-md flex flex-col gap-stack-sm">
               <div className={image ? "w-16 h-16 flex items-center justify-center overflow-hidden" : "w-12 h-12 bg-secondary-container text-primary flex items-center justify-center"}>
                 {image ? (
@@ -39,6 +40,17 @@ export default function Sustainability() {
               </div>
               <h3 className="font-headline-md text-headline-md text-on-surface text-xl">{title}</h3>
               <p className="font-body-md text-body-md text-on-surface-variant">{body}</p>
+              {link && (
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group mt-auto inline-flex items-center gap-1 font-label-caps text-label-caps uppercase tracking-[0.16em] text-primary hover:underline underline-offset-4"
+                >
+                  <span>{link.label}</span>
+                  <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
+                </a>
+              )}
             </div>
           ))}
         </div>
