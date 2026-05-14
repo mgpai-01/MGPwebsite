@@ -1,5 +1,9 @@
-const items = [
-  { title: 'WPA Director', body: 'A seat on the Western Pallet Association board — helping shape industry standards, safety practices, and sustainability policy across the West Coast supply chain.' },
+const items: { title: string; body: string; image?: string }[] = [
+  {
+    title: 'WPA Director',
+    body: 'A seat on the Western Pallet Association board — helping shape industry standards, safety practices, and sustainability policy across the West Coast supply chain.',
+    image: '/wpa.png',
+  },
   { title: 'Woodpack Global Member', body: 'Part of an international network of vetted pallet manufacturers — sharing best practices, capacity, and consistent quality standards for clients shipping worldwide.' },
   { title: 'Carbon Tracking', body: 'We measure and report our Scope 1 & 2 emissions annually.' },
   { title: 'Local Sourcing', body: 'Regional mills reduce transportation emissions and support local economies.' },
@@ -24,9 +28,15 @@ export default function Sustainability() {
           <p className="font-body-md text-body-md text-on-surface-variant">Active seats on the industry’s top boards, plus rigorous environmental practices — from forest sourcing to final delivery. Sustainability runs deeper than a claim; it’s how we operate.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-stack-md">
-          {items.map(({ title, body }) => (
+          {items.map(({ title, body, image }) => (
             <div key={title} className="border border-outline-variant bg-surface-container-lowest p-stack-md flex flex-col gap-stack-sm">
-              <div className="w-12 h-12 bg-secondary-container text-primary flex items-center justify-center"><LeafIcon /></div>
+              <div className="w-12 h-12 bg-secondary-container text-primary flex items-center justify-center overflow-hidden">
+                {image ? (
+                  <img src={image} alt={title} className="w-full h-full object-contain" />
+                ) : (
+                  <LeafIcon />
+                )}
+              </div>
               <h3 className="font-headline-md text-headline-md text-on-surface text-xl">{title}</h3>
               <p className="font-body-md text-body-md text-on-surface-variant">{body}</p>
             </div>
