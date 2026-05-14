@@ -4,7 +4,7 @@ const items: { title: string; body: string; image?: string }[] = [
     body: 'A seat on the Western Pallet Association board — helping shape industry standards, safety practices, and sustainability policy across the West Coast supply chain.',
     image: '/wpa.png',
   },
-  { title: 'Woodpack Global Member', body: 'Part of an international network of vetted pallet manufacturers — sharing best practices, capacity, and consistent quality standards for clients shipping worldwide.' },
+  { title: 'Woodpack Global Member', body: 'Part of an international network of vetted pallet manufacturers — sharing best practices, capacity, and consistent quality standards for clients shipping worldwide.', image: '/woodpack.png' },
   { title: 'Samsara Fleet Tracking', body: 'Real-time GPS, route optimization, and verified ETAs across every MGP truck. Customers see exactly when pallets arrive, every time.', image: '/samsara.png' },
   { title: 'Local Sourcing', body: 'Regional mills reduce transportation emissions and support local economies.' },
 ]
