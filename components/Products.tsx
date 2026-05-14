@@ -6,9 +6,9 @@ const products = [
     img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC58pZmIaGXyKalRmmGd7lzOtXaeMMqvrWWgPxOmKTMjaT-cCVv5HHzVuiHJHAJ3UyNZ-Mb6t1hOToPvxkc5QtFIsKEwmwYjt4z9tFpJPpvEu5eccvNeYorkVqkxK0xl0NzLOTBQ9uFUkw-v4PaK9j-XOJNsVil2TH-r5qF72_OWh2b-xr3MPYywxcmaVaGAOmanP_o2AGHLQGGpWIJpJtE5UrRE9FgJIpwUDtkrlBtKEP7SjhaBLdW1wKvdc-U6pNj8zlpouWhcg',
   },
   {
-    title: 'Recycled Pallets',
-    body: 'Cost-effective, environmentally responsible options sourced locally and graded for consistent performance.',
-    specs: ['Grade A & B', 'Sorted by size', 'High volume supply', 'Regional sourcing'],
+    title: 'On-Site Repair',
+    body: 'Mobile repair crews come to your facility — cut downtime, slash transport costs, and keep your fleet rolling without missing a beat.',
+    specs: ['Same-day dispatch', 'Trained on-site technicians', 'All grades repaired in place', 'Zero transportation costs'],
     img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDeGmfZM0iG362m0L7JX18_lBBcdKOJHWK4dXlsoPRL9JbMAMxHCfNwBlJBQeBRxh1LxwwzW1kx9tTAUyjTVvUERGGgfGH1e4mFjpJoiacOcOsrtOYTV3dwOsJ1KOL41qfdHeUarwqha6EsvQJBN6dOCIhcUDgNUcwWn1cBbYvwdURbl1TlSCoTP6C2e_q6_TenMD7HDvGwSZ8FPVHn0J6IipIZ-5436McbJeXhNCgGU-OqU-AmcCmyavvjz3WibL318n7Hs_QZtg',
   },
   {
