@@ -22,7 +22,7 @@ export default function Hero() {
               ISPM-15 Certified · WPA Director · Woodpack Global Member
             </span>
             <h1 className="font-headline-xl text-headline-xl uppercase text-on-surface">
-              The Gold Standard in Industrial Pallet Solutions
+              The pallet standard in supply chain solutions
             </h1>
             <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
               The Inland Empire’s leader in reliable, sustainable, and
