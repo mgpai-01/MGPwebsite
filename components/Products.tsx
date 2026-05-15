@@ -1,6 +1,6 @@
 const products = [
   {
-    title: 'New Pallets',
+    title: 'New and Custom Specialty Pallets',
     body: 'Custom-built to your exact specifications using sustainably sourced raw materials. Consistent dimensions and reliability for any operation.',
     specs: ['GMA Standard 48″×40″', 'Custom sizing available', 'HT/MB certified', 'Any wood species'],
     img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC58pZmIaGXyKalRmmGd7lzOtXaeMMqvrWWgPxOmKTMjaT-cCVv5HHzVuiHJHAJ3UyNZ-Mb6t1hOToPvxkc5QtFIsKEwmwYjt4z9tFpJPpvEu5eccvNeYorkVqkxK0xl0NzLOTBQ9uFUkw-v4PaK9j-XOJNsVil2TH-r5qF72_OWh2b-xr3MPYywxcmaVaGAOmanP_o2AGHLQGGpWIJpJtE5UrRE9FgJIpwUDtkrlBtKEP7SjhaBLdW1wKvdc-U6pNj8zlpouWhcg',
@@ -18,10 +18,10 @@ const products = [
     img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDeGmfZM0iG362m0L7JX18_lBBcdKOJHWK4dXlsoPRL9JbMAMxHCfNwBlJBQeBRxh1LxwwzW1kx9tTAUyjTVvUERGGgfGH1e4mFjpJoiacOcOsrtOYTV3dwOsJ1KOL41qfdHeUarwqha6EsvQJBN6dOCIhcUDgNUcwWn1cBbYvwdURbl1TlSCoTP6C2e_q6_TenMD7HDvGwSZ8FPVHn0J6IipIZ-5436McbJeXhNCgGU-OqU-AmcCmyavvjz3WibL318n7Hs_QZtg',
   },
   {
-    title: 'Custom & Specialty',
-    body: 'Oversized, block, or uniquely engineered crates designed for specialized cargo. Built for your unique requirements.',
-    specs: ['CAD-ready design', 'Block or stringer', 'Chemical-resistant coatings', 'Private label stamping'],
-    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCj1PENpZY44HogVc_8Ud5mqNGRrz-2K8GT3nIHWklplM0dKoE7ui_iuQuC3iiwul1Rulylx0mVIvBLRYajXPwq2zMrwUUBfkZ1tb3Wxpj8wzAObY42KIXA9Di4cpz7cPzyRioIpIyaqNdTCqe54_lDD9hKIZk5YsioIu7I81lHvR8mBob0MnHco7hCGiV3LdUubBGEs2LEoJ3A3BZdSNlMkpyO0Tu3Qf4yvv96w6w05ovkB5Akc5bhnXpU6y8O3KQ6hNbUJgR1Xg',
+    title: 'Our Automation',
+    body: 'AI-powered robotic systems handle stacking, sorting, and quality inspection at machine speed. Higher throughput, tighter tolerances, and consistent output — 24/7, with vision-based QC catching defects no human can spot.',
+    specs: ['AI-powered robotics', 'Up to 3× throughput', 'Vision-based quality control', '24/7 lights-out operation'],
+    img: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1200&q=80',
   },
 ]
 
