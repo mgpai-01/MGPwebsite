@@ -1,9 +1,16 @@
-function FooterColumn({ title, links }: { title: string; links: { label: string; href: string }[] }) {
+'use client'
+
+import { useT } from '@/lib/i18n'
+
+const productHrefs = ['#products', '#products', '#products', '#products']
+const companyHrefs = ['#about', '#sustainability', '#industries', '#locations', '#quote']
+
+function FooterColumn({ title, items }: { title: string; items: { label: string; href: string }[] }) {
   return (
     <div className="flex flex-col gap-stack-sm">
       <h4 className="font-label-caps text-label-caps uppercase text-primary-fixed-dim tracking-[0.12em]">{title}</h4>
       <ul className="flex flex-col gap-2">
-        {links.map((l) => (
+        {items.map((l) => (
           <li key={l.label}><a href={l.href} className="footer-link font-body-md text-[14px] text-inverse-on-surface/70 hover:text-primary-fixed-dim transition-colors no-underline">{l.label}</a></li>
         ))}
       </ul>
@@ -12,6 +19,14 @@ function FooterColumn({ title, links }: { title: string; links: { label: string;
 }
 
 export default function Footer() {
+  const { t } = useT()
+  const contactItems = [
+    { label: '(909) 827-1438', href: 'tel:+19098271438' },
+    { label: 'mgp@palletmail.com', href: 'mailto:mgp@palletmail.com' },
+    { label: '8386 Sultana Ave, Fontana CA', href: '#locations' },
+    { label: '14619 Merrill Ave, Fontana CA', href: '#locations' },
+    { label: '1326 W Citrus St, Riverside CA', href: '#locations' },
+  ]
   return (
     <footer className="block w-full border-t-4 border-primary bg-inverse-surface text-primary-fixed">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-stack-lg px-gutter py-section-padding w-full max-w-container-max mx-auto">
@@ -23,16 +38,16 @@ export default function Footer() {
               <div className="font-headline-md font-black text-primary-fixed-dim text-base">Green Products</div>
             </div>
           </div>
-          <p className="font-body-md text-[14px] text-inverse-on-surface/60 max-w-xs">Your trusted pallet partner in the Inland Empire. New, recycled, repaired, and custom pallets backed by sustainable forestry practices.</p>
+          <p className="font-body-md text-[14px] text-inverse-on-surface/60 max-w-xs">{t.footer.blurb}</p>
         </div>
-        <FooterColumn title="Products" links={[{ label: 'New Pallets', href: '#products' },{ label: 'Recycled Pallets', href: '#products' },{ label: 'Repaired Pallets', href: '#products' },{ label: 'Custom & Specialty', href: '#products' }]} />
-        <FooterColumn title="Company" links={[{ label: 'About', href: '#about' },{ label: 'Sustainability', href: '#sustainability' },{ label: 'Industries', href: '#industries' },{ label: 'Locations', href: '#locations' },{ label: 'Get a Quote', href: '#quote' }]} />
-        <FooterColumn title="Contact" links={[{ label: '(909) 827-1438', href: 'tel:+19098271438' },{ label: 'mgp@palletmail.com', href: 'mailto:mgp@palletmail.com' },{ label: '8386 Sultana Ave, Fontana CA', href: '#locations' },{ label: '14619 Merrill Ave, Fontana CA', href: '#locations' },{ label: '1326 W Citrus St, Riverside CA', href: '#locations' }]} />
+        <FooterColumn title={t.footer.productsTitle} items={t.footer.productLinks.map((label, i) => ({ label, href: productHrefs[i] }))} />
+        <FooterColumn title={t.footer.companyTitle} items={t.footer.companyLinks.map((label, i) => ({ label, href: companyHrefs[i] }))} />
+        <FooterColumn title={t.footer.contactTitle} items={contactItems} />
       </div>
       <div className="border-t border-outline-variant/20">
         <div className="max-w-container-max mx-auto px-gutter py-stack-md flex flex-col md:flex-row justify-between gap-stack-sm">
-          <p className="font-body-md text-[13px] text-inverse-on-surface/40">© {new Date().getFullYear()} Manufacturing Green Products. All rights reserved.</p>
-          <p className="font-label-caps text-[12px] uppercase tracking-[0.10em] text-inverse-on-surface/40">ISPM-15 Certified · WPA Director · Woodpack Global Member</p>
+          <p className="font-body-md text-[13px] text-inverse-on-surface/40">© {new Date().getFullYear()} Manufacturing Green Products. {t.footer.rights}</p>
+          <p className="font-label-caps text-[12px] uppercase tracking-[0.10em] text-inverse-on-surface/40">{t.footer.certs}</p>
         </div>
       </div>
     </footer>

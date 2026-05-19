@@ -1,8 +1,10 @@
 'use client'
 
 import { useState, FormEvent, ChangeEvent } from 'react'
+import { useT } from '@/lib/i18n'
 
 export default function QuoteForm() {
+  const { t } = useT()
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
@@ -33,14 +35,15 @@ export default function QuoteForm() {
 
   const inputCls = 'w-full bg-surface-container-lowest border border-outline-variant px-stack-sm py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors'
   const labelCls = 'block font-label-caps text-[12px] uppercase tracking-[0.10em] text-on-primary/60 mb-2'
+  const f = t.quote.fields
 
   return (
     <section id="quote" className="py-section-padding px-gutter bg-inverse-surface text-on-primary">
       <div className="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-stack-lg items-start">
         <div className="flex flex-col gap-stack-sm">
-          <span className="font-label-caps text-label-caps uppercase text-primary-fixed-dim tracking-[0.16em]">Get Started</span>
-          <h2 className="font-headline-lg text-headline-lg text-on-primary">Request a Quote</h2>
-          <p className="font-body-md text-body-md text-surface-container-high">Tell us about your pallet needs and we’ll get back to you within one business day with pricing and availability.</p>
+          <span className="font-label-caps text-label-caps uppercase text-primary-fixed-dim tracking-[0.16em]">{t.quote.label}</span>
+          <h2 className="font-headline-lg text-headline-lg text-on-primary">{t.quote.heading}</h2>
+          <p className="font-body-md text-body-md text-surface-container-high">{t.quote.body}</p>
           <div className="flex flex-col gap-stack-sm mt-stack-sm">
             {[
               { icon: '📞', text: '(909) 827-1438' },
@@ -62,22 +65,34 @@ export default function QuoteForm() {
               <div className="w-16 h-16 bg-primary-fixed-dim/30 mx-auto mb-stack-sm flex items-center justify-center">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#92d6a1" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
               </div>
-              <h3 className="font-headline-md text-headline-md text-on-primary mb-2">Thank You!</h3>
-              <p className="font-body-md text-body-md text-surface-container-high">We’ve received your request and will be in touch within one business day.</p>
+              <h3 className="font-headline-md text-headline-md text-on-primary mb-2">{t.quote.thanks}</h3>
+              <p className="font-body-md text-body-md text-surface-container-high">{t.quote.thanksBody}</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-stack-sm">
               {/* honeypot */}
               <input type="text" name="website" value={form.website} onChange={handleChange} tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
-              <div><label className={labelCls}>Name *</label><input className={inputCls} required name="name" value={form.name} onChange={handleChange} placeholder="Your name" /></div>
-              <div><label className={labelCls}>Company *</label><input className={inputCls} required name="company" value={form.company} onChange={handleChange} placeholder="Company name" /></div>
-              <div><label className={labelCls}>Email *</label><input className={inputCls} required type="email" name="email" value={form.email} onChange={handleChange} placeholder="you@company.com" /></div>
-              <div><label className={labelCls}>Phone</label><input className={inputCls} type="tel" name="phone" value={form.phone} onChange={handleChange} placeholder="(555) 000-0000" /></div>
-              <div><label className={labelCls}>Product Type</label><select className={inputCls} name="productType" value={form.productType} onChange={handleChange}><option value="">Select product type</option><option>New Pallets</option><option>Recycled Pallets</option><option>Repaired Pallets</option><option>Custom / Specialty</option></select></div>
-              <div><label className={labelCls}>Estimated Quantity</label><select className={inputCls} name="quantity" value={form.quantity} onChange={handleChange}><option value="">Select quantity</option><option>Under 100</option><option>100–500</option><option>500–2,000</option><option>2,000–10,000</option><option>10,000+</option></select></div>
-              <div className="md:col-span-2"><label className={labelCls}>Additional Notes</label><textarea className={inputCls} rows={4} name="notes" value={form.notes} onChange={handleChange} placeholder="Tell us about your specific requirements, delivery location, or any other details…" /></div>
+              <div><label className={labelCls}>{f.name}</label><input className={inputCls} required name="name" value={form.name} onChange={handleChange} placeholder={f.namePh} /></div>
+              <div><label className={labelCls}>{f.company}</label><input className={inputCls} required name="company" value={form.company} onChange={handleChange} placeholder={f.companyPh} /></div>
+              <div><label className={labelCls}>{f.email}</label><input className={inputCls} required type="email" name="email" value={form.email} onChange={handleChange} placeholder={f.emailPh} /></div>
+              <div><label className={labelCls}>{f.phone}</label><input className={inputCls} type="tel" name="phone" value={form.phone} onChange={handleChange} placeholder={f.phonePh} /></div>
+              <div>
+                <label className={labelCls}>{f.product}</label>
+                <select className={inputCls} name="productType" value={form.productType} onChange={handleChange}>
+                  <option value="">{f.productPh}</option>
+                  {f.productOpts.map((opt) => <option key={opt}>{opt}</option>)}
+                </select>
+              </div>
+              <div>
+                <label className={labelCls}>{f.quantity}</label>
+                <select className={inputCls} name="quantity" value={form.quantity} onChange={handleChange}>
+                  <option value="">{f.quantityPh}</option>
+                  {f.quantityOpts.map((opt) => <option key={opt}>{opt}</option>)}
+                </select>
+              </div>
+              <div className="md:col-span-2"><label className={labelCls}>{f.notes}</label><textarea className={inputCls} rows={4} name="notes" value={form.notes} onChange={handleChange} placeholder={f.notesPh} /></div>
               {error && <div className="md:col-span-2 text-error-container font-body-md text-[14px]">{error}</div>}
-              <div className="md:col-span-2"><button type="submit" disabled={busy} className="bg-primary text-on-primary px-stack-md py-stack-sm font-label-caps text-label-caps uppercase hover:bg-primary-container transition-colors shadow-[4px_4px_0_0_theme(colors.surface-tint)] disabled:opacity-60">{busy ? 'Sending…' : 'Send Request'}</button></div>
+              <div className="md:col-span-2"><button type="submit" disabled={busy} className="bg-primary text-on-primary px-stack-md py-stack-sm font-label-caps text-label-caps uppercase hover:bg-primary-container transition-colors shadow-[4px_4px_0_0_theme(colors.surface-tint)] disabled:opacity-60">{busy ? t.quote.submitting : t.quote.submit}</button></div>
             </form>
           )}
         </div>

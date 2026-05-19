@@ -1,4 +1,9 @@
+'use client'
+
+import { useT } from '@/lib/i18n'
+
 export default function Hero() {
+  const { t } = useT()
   return (
     <section className="relative overflow-hidden bg-white min-h-[100vh]">
       <div className="absolute inset-0 overflow-hidden bg-white">
@@ -19,22 +24,18 @@ export default function Hero() {
         <div className="max-w-container-max mx-auto flex flex-col gap-stack-lg">
           <div className="max-w-3xl flex flex-col gap-stack-sm">
             <span className="inline-flex items-center self-start border border-primary/30 rounded-full px-4 py-1.5 font-label-caps text-[12px] uppercase tracking-[0.16em] text-primary bg-white/80 backdrop-blur-sm">
-              ISPM-15 Certified · WPA Director · Woodpack Global Member
+              {t.hero.badge}
             </span>
             <h1 className="font-headline-xl text-headline-xl uppercase text-on-surface">
-              The pallet standard in supply chain solutions
+              {t.hero.title}
             </h1>
             <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
-              The Inland Empire’s leader in reliable, sustainable, and
-              heavy-duty logistics foundations. MGP supplies new, recycled,
-              repaired and custom wood pallets to warehouses, manufacturers,
-              and distributors — backed by a commitment to sustainable
-              forestry.
+              {t.hero.body}
             </p>
           </div>
           <div className="flex gap-stack-sm flex-wrap">
-            <a href="#quote" className="bg-primary text-on-primary px-stack-md py-stack-sm font-label-caps text-label-caps uppercase hover:bg-primary-container transition-colors shadow-[4px_4px_0_0_theme(colors.surface-tint)] no-underline">Get a Quote</a>
-            <a href="#products" className="border-2 border-on-surface text-on-surface px-stack-md py-stack-sm font-label-caps text-label-caps uppercase hover:bg-on-surface hover:text-white transition-colors no-underline">View Products</a>
+            <a href="#quote" className="bg-primary text-on-primary px-stack-md py-stack-sm font-label-caps text-label-caps uppercase hover:bg-primary-container transition-colors shadow-[4px_4px_0_0_theme(colors.surface-tint)] no-underline">{t.hero.cta1}</a>
+            <a href="#products" className="border-2 border-on-surface text-on-surface px-stack-md py-stack-sm font-label-caps text-label-caps uppercase hover:bg-on-surface hover:text-white transition-colors no-underline">{t.hero.cta2}</a>
           </div>
         </div>
       </div>

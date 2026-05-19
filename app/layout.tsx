@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Public_Sans, Work_Sans } from 'next/font/google'
 import './globals.css'
+import { LanguageProvider, HtmlLangScript } from '@/lib/i18n'
 
 const publicSans = Public_Sans({ subsets: ['latin'], weight: ['300','400','700'], variable: '--font-public-sans', display: 'swap' })
 const workSans   = Work_Sans({   subsets: ['latin'], weight: ['700','900'],       variable: '--font-work-sans',   display: 'swap' })
@@ -88,8 +89,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`light ${publicSans.variable} ${workSans.variable}`}>
       <head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
+        <HtmlLangScript />
       </head>
-      <body className="bg-background text-on-background antialiased">{children}</body>
+      <body className="bg-background text-on-background antialiased">
+        <LanguageProvider>{children}</LanguageProvider>
+      </body>
     </html>
   )
 }

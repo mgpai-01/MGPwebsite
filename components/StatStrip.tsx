@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { useT } from '@/lib/i18n'
 
 type Stat = { value: string; label: string; target: number; suffix: string }
 
@@ -10,15 +11,6 @@ const parse = (raw: string): { target: number; suffix: string } => {
   const numStr = m[1].replace(/,/g, '')
   return { target: parseFloat(numStr), suffix: m[2] }
 }
-
-const raw: { value: string; label: string }[] = [
-  { value: '45+', label: 'Years Experience' },
-  { value: '250K+', label: 'Pallets Per Month' },
-  { value: '100%', label: 'ISPM-15 Compliant' },
-  { value: '24hr', label: 'Turnaround' },
-]
-
-const stats: Stat[] = raw.map((s) => ({ ...s, ...parse(s.value) }))
 
 function Counter({ target, suffix }: { target: number; suffix: string }) {
   const [n, setN] = useState(0)
@@ -55,6 +47,14 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
 }
 
 export default function StatStrip() {
+  const { t } = useT()
+  const raw: { value: string; label: string }[] = [
+    { value: '45+', label: t.stats.yearsExperience },
+    { value: '250K+', label: t.stats.palletsPerMonth },
+    { value: '100%', label: t.stats.ispmCompliant },
+    { value: '24hr', label: t.stats.turnaround },
+  ]
+  const stats: Stat[] = raw.map((s) => ({ ...s, ...parse(s.value) }))
   return (
     <section className="bg-tertiary-fixed text-on-tertiary-fixed py-stack-lg px-gutter border-y-2 border-outline-variant">
       <div className="max-w-container-max mx-auto grid grid-cols-2 md:grid-cols-4 gap-stack-md text-center">
