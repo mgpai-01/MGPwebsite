@@ -117,8 +117,8 @@ export const es: Dictionary = {
         a: 'Nuestros tres patios (Fontana × 2, Riverside) atienden diariamente al Inland Empire. También entregamos en los condados de Los Ángeles, Orange y San Diego en rutas programadas, y enviamos a nivel nacional por flete para pedidos más grandes.',
       },
       {
-        q: '¿Cómo funciona su servicio de reparación en sitio?',
-        a: 'Nuestros equipos móviles llevan el equipo de reparación directamente a tus instalaciones. Clasificamos, reparamos y reapilamos tu inventario actual de tarimas en sitio — reduciendo los costos de transporte a cero y minimizando el tiempo de inactividad. Ideal para almacenes con más de 500 tarimas en rotación semanal.',
+        q: '¿Cómo funciona su servicio en sitio?',
+        a: 'Nuestro programa en sitio es la gestión completa del flujo de tarimas en tu instalación: mantenemos tu inventario de tarimas, nos encargamos del mantenimiento continuo y aseguramos que tu operación cuente con las tarimas adecuadas en el momento adecuado. La mayoría de las reparaciones se realizan en nuestras instalaciones, pero también podemos enviar equipos para reparar tarimas en sitio cuando sea necesario. Ideal para almacenes con un flujo constante de tarimas.',
       },
       {
         q: '¿Sus tarimas son sostenibles?',
@@ -126,7 +126,7 @@ export const es: Dictionary = {
       },
       {
         q: '¿Ofrecen descuentos por volumen?',
-        a: 'Sí. El precio se ajusta según la cantidad — solicita una cotización con tu volumen mensual estimado y te enviaremos precios escalonados en un día hábil. Las cuentas con contrato obtienen precios fijos, gerentes de cuenta dedicados y inventario garantizado.',
+        a: 'Sí. El precio se ajusta según la cantidad — solicita una cotización con tu volumen mensual estimado y te enviaremos precios escalonados en un día hábil. Los clientes nuevos reciben un 15% de descuento en su primer pedido. Las cuentas con contrato obtienen precios fijos, gerentes de cuenta dedicados y inventario garantizado.',
       },
     ],
   },

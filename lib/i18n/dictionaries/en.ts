@@ -115,8 +115,8 @@ export const en = {
         a: 'Our three yards (Fontana × 2, Riverside) serve the Inland Empire daily. We also deliver across Los Angeles, Orange County, and San Diego counties on scheduled routes, and ship nationwide via freight for larger orders.',
       },
       {
-        q: 'How does your on-site repair service work?',
-        a: 'Our mobile crews bring repair equipment directly to your facility. We grade, repair, and re-stack your existing pallet inventory on-site — cutting transport costs to zero and minimizing operational downtime. Best for warehouses with 500+ pallets cycling weekly.',
+        q: 'How does your on-site service work?',
+        a: 'Our on-site program is full pallet pool management at your facility: we maintain your pallet inventory, handle ongoing upkeep, and keep your operation running with the right pallets at the right time. Most repairs happen at our facility, but we can also dispatch crews to fix pallets on-site when needed. Best for warehouses with steady pallet cycling.',
       },
       {
         q: 'Are your pallets sustainable?',
@@ -124,7 +124,7 @@ export const en = {
       },
       {
         q: 'Do you offer volume discounts?',
-        a: 'Yes. Pricing scales with quantity — request a quote with your estimated monthly volume and we’ll send tiered pricing within one business day. Contract accounts unlock locked-in pricing, dedicated account managers, and guaranteed inventory.',
+        a: 'Yes. Pricing scales with quantity — request a quote with your estimated monthly volume and we’ll send tiered pricing within one business day. First-time customers get 15% off their first order. Contract accounts unlock locked-in pricing, dedicated account managers, and guaranteed inventory.',
       },
     ],
   },
