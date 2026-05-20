@@ -24,7 +24,14 @@ export const metadata: Metadata = {
     'Manufacturing Green Products','pallets Riverside CA','pallets Ontario CA','pallets Rancho Cucamonga',
     'pallets San Bernardino','WPA Western Pallet Association','Woodpack Global pallets',
   ],
-  alternates: { canonical: '/' },
+  alternates: {
+    canonical: '/',
+    languages: {
+      'en-US': '/',
+      'es': '/',
+      'zh-CN': '/',
+    },
+  },
   openGraph: {
     type: 'website',
     url: SITE,
@@ -32,13 +39,20 @@ export const metadata: Metadata = {
     title: 'Manufacturing Green Products | Industrial Pallet Solutions Fontana CA',
     description: 'New, recycled, repaired & custom wood pallets. 45+ years serving the Inland Empire. ISPM-15 certified · WPA Director · Woodpack Global Member.',
     locale: 'en_US',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Manufacturing Green Products — Industrial Pallet Solutions' }],
+    alternateLocale: ['es_MX', 'zh_CN'],
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Manufacturing Green Products — Industrial Pallet Solutions' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Manufacturing Green Products | Pallet Solutions Fontana CA',
     description: '45+ years building the backbone of California’s supply chain. New, recycled, repaired, and custom wood pallets.',
-    images: ['/og-image.png'],
+    images: ['/opengraph-image'],
+  },
+  other: {
+    'geo.region': 'US-CA',
+    'geo.placename': 'Fontana',
+    'geo.position': '34.0922;-117.435',
+    'ICBM': '34.0922, -117.435',
   },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 } },
   // Replace value below after Search Console gives you a verification code.
@@ -95,12 +109,67 @@ const faqSchema = {
   })),
 }
 
+const services = [
+  {
+    name: 'New Wood Pallets',
+    description: 'Custom-built new wood pallets using sustainably sourced lumber. GMA standard 48"×40" and fully custom dimensions. HT/MB certified for international export.',
+  },
+  {
+    name: 'Recycled Pallets',
+    description: 'Inspected, graded, and re-stacked recycled wood pallets. Lower cost than new, full inventory consistency, available in standard GMA and custom sizes.',
+  },
+  {
+    name: 'Repaired Pallets',
+    description: 'Pallet repair and reconditioning to extend fleet life. Same-day pickup available across the Inland Empire. Grade-to-spec output for contract accounts.',
+  },
+  {
+    name: 'Custom & Specialty Pallets',
+    description: 'Engineered to your exact specifications. Heavy-duty, food-grade, export-ready, or unusual dimensions — any wood species, any deck pattern.',
+  },
+  {
+    name: 'On-Site Pallet Pool Management',
+    description: 'Full pallet supply and maintenance program at your facility. Inventory upkeep, ongoing replenishment, and on-site repair crews available when needed.',
+  },
+]
+
+const serviceSchemas = services.map((s, i) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${SITE}/#service-${i}`,
+  serviceType: s.name,
+  name: s.name,
+  description: s.description,
+  provider: { '@id': `${SITE}/#business` },
+  areaServed: ['Fontana','Riverside','San Bernardino','Ontario','Rancho Cucamonga','Colton','Rialto','Los Angeles'].map((c) => ({ '@type': 'City', name: c })),
+}))
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${SITE}/#organization`,
+  name: 'Manufacturing Green Products',
+  alternateName: 'MGP Pallets',
+  url: SITE,
+  logo: { '@type': 'ImageObject', url: `${SITE}/logo.png`, width: 512, height: 512 },
+  foundingDate: '1980',
+  foundingLocation: { '@type': 'Place', name: 'Fontana, California, USA' },
+  knowsAbout: ['Wood Pallets', 'Pallet Recycling', 'ISPM-15 Heat Treatment', 'Supply Chain Logistics', 'Sustainable Forestry'],
+  memberOf: [
+    { '@type': 'Organization', name: 'Western Pallet Association' },
+    { '@type': 'Organization', name: 'Woodpack Global' },
+  ],
+}
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`light ${publicSans.variable} ${workSans.variable}`}>
       <head>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+        {serviceSchemas.map((s, i) => (
+          <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
+        ))}
         <HtmlLangScript />
       </head>
       <body className="bg-background text-on-background antialiased">
