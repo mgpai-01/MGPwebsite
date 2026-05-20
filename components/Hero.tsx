@@ -7,13 +7,14 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-white min-h-[100vh]">
       <div className="absolute inset-0 overflow-hidden bg-white">
+        {/* Video is hidden on mobile to cut bandwidth — gradient backdrop alone reads well on small screens */}
         <video
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
-          className="absolute top-0 right-0 h-full w-[120%] object-cover translate-x-[8%]"
+          preload="none"
+          className="hidden md:block absolute top-0 right-0 h-full w-[120%] object-cover translate-x-[8%]"
         >
           <source src="/mp_.mp4" type="video/mp4" />
         </video>

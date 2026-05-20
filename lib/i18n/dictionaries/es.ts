@@ -7,6 +7,7 @@ export const es: Dictionary = {
     sustainability: 'Sostenibilidad',
     about: 'Nosotros',
     locations: 'Ubicaciones',
+    faq: 'Preguntas',
     cta: 'Solicitar Cotización',
     languageLabel: 'Idioma',
   },
@@ -88,6 +89,45 @@ export const es: Dictionary = {
       { name: 'Sultana — Sede Principal' },
       { name: 'Patio Merrill' },
       { name: 'Patio Riverside' },
+    ],
+  },
+  faq: {
+    label: 'Preguntas Frecuentes',
+    heading: 'Preguntas Frecuentes',
+    body: 'Respuestas rápidas a lo que más nos preguntan antes de solicitar una cotización.',
+    items: [
+      {
+        q: '¿Qué es una tarima certificada ISPM-15?',
+        a: 'ISPM-15 es un estándar fitosanitario internacional que exige que los embalajes de madera sean tratados térmicamente (HT) o fumigados (MB) para prevenir la propagación de plagas entre fronteras. Cada tarima MGP destinada a exportación lleva el sello verificado ISPM-15 — requerido para envíos a la UE, China, India, México y la mayoría de los mercados internacionales.',
+      },
+      {
+        q: '¿Hacen tarimas a la medida?',
+        a: 'Sí — cualquier dimensión, especie de madera, configuración de tablones o largueros. Envíanos una hoja de especificaciones o una muestra y la igualamos. Los pedidos personalizados normalmente se envían en 5-10 días hábiles; también hay tiempos de respuesta urgente disponibles.',
+      },
+      {
+        q: '¿Cuál es su tiempo de entrega habitual?',
+        a: 'Las tarimas estándar GMA 48″×40″ se envían el mismo día o al día siguiente en la mayoría de los pedidos de menos de 5,000 unidades. Las tarimas recicladas y reparadas se envían en 24-48 horas. Los pedidos personalizados y especializados toman entre 5-10 días hábiles. Las cuentas con contrato reciben ventanas de entrega garantizadas.',
+      },
+      {
+        q: '¿Recogen tarimas viejas para reciclar?',
+        a: 'Sí — ofrecemos recolección gratuita de tarimas usadas o dañadas en todo el Inland Empire (Fontana, Riverside, Ontario, Rancho Cucamonga, San Bernardino, Colton, Rialto). Los clientes de gran volumen pueden calificar para precios de recompra en tarimas utilizables.',
+      },
+      {
+        q: '¿A qué áreas entregan?',
+        a: 'Nuestros tres patios (Fontana × 2, Riverside) atienden diariamente al Inland Empire. También entregamos en los condados de Los Ángeles, Orange y San Diego en rutas programadas, y enviamos a nivel nacional por flete para pedidos más grandes.',
+      },
+      {
+        q: '¿Cómo funciona su servicio de reparación en sitio?',
+        a: 'Nuestros equipos móviles llevan el equipo de reparación directamente a tus instalaciones. Clasificamos, reparamos y reapilamos tu inventario actual de tarimas en sitio — reduciendo los costos de transporte a cero y minimizando el tiempo de inactividad. Ideal para almacenes con más de 500 tarimas en rotación semanal.',
+      },
+      {
+        q: '¿Sus tarimas son sostenibles?',
+        a: 'Sí — toda la madera nueva proviene de bosques certificados como sostenibles, con documentación de cadena de custodia. Tenemos un asiento de director en la junta de la Western Pallet Association y somos miembros de Woodpack Global, el estándar internacional para el suministro sostenible de tarimas. Las tarimas recicladas y reparadas evitan que millones de libras de madera terminen en vertederos cada año.',
+      },
+      {
+        q: '¿Ofrecen descuentos por volumen?',
+        a: 'Sí. El precio se ajusta según la cantidad — solicita una cotización con tu volumen mensual estimado y te enviaremos precios escalonados en un día hábil. Las cuentas con contrato obtienen precios fijos, gerentes de cuenta dedicados y inventario garantizado.',
+      },
     ],
   },
   quote: {

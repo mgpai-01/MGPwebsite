@@ -15,6 +15,7 @@ export default function Header() {
     { href: '#sustainability', label: t.nav.sustainability },
     { href: '#about', label: t.nav.about },
     { href: '#locations', label: t.nav.locations },
+    { href: '#faq', label: t.nav.faq },
   ]
 
   useEffect(() => {

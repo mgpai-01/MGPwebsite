@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Public_Sans, Work_Sans } from 'next/font/google'
 import './globals.css'
 import { LanguageProvider, HtmlLangScript } from '@/lib/i18n'
+import { en } from '@/lib/i18n/dictionaries/en'
 
 const publicSans = Public_Sans({ subsets: ['latin'], weight: ['300','400','700'], variable: '--font-public-sans', display: 'swap' })
 const workSans   = Work_Sans({   subsets: ['latin'], weight: ['700','900'],       variable: '--font-work-sans',   display: 'swap' })
@@ -84,11 +85,22 @@ const localBusinessSchema = {
   // ],
 }
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: en.faq.items.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+}
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`light ${publicSans.variable} ${workSans.variable}`}>
       <head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
         <HtmlLangScript />
       </head>
       <body className="bg-background text-on-background antialiased">

@@ -6,6 +6,7 @@ import Industries from '@/components/Industries'
 import Sustainability from '@/components/Sustainability'
 import About from '@/components/About'
 import LocationsMap from '@/components/LocationsMap'
+import FAQ from '@/components/FAQ'
 import QuoteForm from '@/components/QuoteForm'
 import Footer from '@/components/Footer'
 
@@ -21,6 +22,7 @@ export default function Home() {
         <Sustainability />
         <About />
         <LocationsMap />
+        <FAQ />
         <QuoteForm />
       </main>
       <Footer />

@@ -5,6 +5,7 @@ export const en = {
     sustainability: 'Sustainability',
     about: 'About',
     locations: 'Locations',
+    faq: 'FAQ',
     cta: 'Get a Quote',
     languageLabel: 'Language',
   },
@@ -86,6 +87,45 @@ export const en = {
       { name: 'Sultana — Home Base' },
       { name: 'Merrill Yard' },
       { name: 'Riverside Yard' },
+    ],
+  },
+  faq: {
+    label: 'FAQ',
+    heading: 'Frequently Asked Questions',
+    body: 'Quick answers to what buyers ask most before placing a quote.',
+    items: [
+      {
+        q: 'What is an ISPM-15 certified pallet?',
+        a: 'ISPM-15 is an international phytosanitary standard requiring wood packaging to be heat-treated (HT) or fumigated (MB) to prevent cross-border pest spread. Every MGP pallet destined for export ships with a verified ISPM-15 stamp — required for shipments to the EU, China, India, Mexico, and most international markets.',
+      },
+      {
+        q: 'Do you make custom-sized pallets?',
+        a: 'Yes — any dimension, any wood species, any deck or stringer pattern. Send us a spec sheet or a sample and we’ll match it. Custom orders typically ship within 5-10 business days; rush turnarounds available.',
+      },
+      {
+        q: 'What is your typical lead time?',
+        a: 'Standard 48″×40″ GMA pallets ship same-day or next-day on most orders under 5,000 units. Recycled and repaired pallets ship within 24-48 hours. Custom and specialty orders run 5-10 business days. Contract accounts get guaranteed turnaround windows.',
+      },
+      {
+        q: 'Do you pick up old pallets for recycling?',
+        a: 'Yes — we offer free pickup of unused or damaged pallets across the Inland Empire (Fontana, Riverside, Ontario, Rancho Cucamonga, San Bernardino, Colton, Rialto). Volume customers may qualify for buyback pricing on usable pallets.',
+      },
+      {
+        q: 'What areas do you deliver to?',
+        a: 'Our three yards (Fontana × 2, Riverside) serve the Inland Empire daily. We also deliver across Los Angeles, Orange County, and San Diego counties on scheduled routes, and ship nationwide via freight for larger orders.',
+      },
+      {
+        q: 'How does your on-site repair service work?',
+        a: 'Our mobile crews bring repair equipment directly to your facility. We grade, repair, and re-stack your existing pallet inventory on-site — cutting transport costs to zero and minimizing operational downtime. Best for warehouses with 500+ pallets cycling weekly.',
+      },
+      {
+        q: 'Are your pallets sustainable?',
+        a: 'Yes — all new lumber comes from certified sustainable forests with chain-of-custody documentation. We hold a director seat on the Western Pallet Association board and are members of Woodpack Global, the international standard for sustainable pallet supply. Recycled and repaired pallets keep millions of pounds of wood out of landfills annually.',
+      },
+      {
+        q: 'Do you offer volume discounts?',
+        a: 'Yes. Pricing scales with quantity — request a quote with your estimated monthly volume and we’ll send tiered pricing within one business day. Contract accounts unlock locked-in pricing, dedicated account managers, and guaranteed inventory.',
+      },
     ],
   },
   quote: {
