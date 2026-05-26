@@ -33,9 +33,9 @@ export default function Footer() {
         <div className="flex flex-col gap-stack-sm">
           <div className="flex items-center gap-3">
             <img src="/logo.png" alt="Manufacturing Green Products" className="h-14 w-14 object-contain" />
-            <div className="leading-tight">
-              <div className="font-headline-md font-black text-on-primary text-base">Manufacturing</div>
-              <div className="font-headline-md font-black text-primary-fixed-dim text-base">Green Products</div>
+            <div className="leading-[1.02]">
+              <div className="font-headline-md font-black text-on-primary text-base tracking-[-0.01em]">Manufacturing</div>
+              <div className="font-headline-md font-black text-primary-fixed-dim text-base tracking-[-0.01em]">Green Products</div>
             </div>
           </div>
           <p className="font-body-md text-[14px] text-inverse-on-surface/60 max-w-xs">{t.footer.blurb}</p>
