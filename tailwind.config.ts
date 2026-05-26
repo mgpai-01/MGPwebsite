@@ -80,7 +80,6 @@ const config: Config = {
         'headline-md': ['var(--font-work-sans)', 'sans-serif'],
         'headline-lg': ['var(--font-work-sans)', 'sans-serif'],
         'headline-xl': ['var(--font-work-sans)', 'sans-serif'],
-        wordmark: ['var(--font-manrope)', 'sans-serif'],
       },
       fontSize: {
         'label-caps': [

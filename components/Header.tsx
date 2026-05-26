@@ -45,9 +45,9 @@ export default function Header() {
       <div className="flex justify-between items-center px-gutter py-stack-sm">
         <a href="#" className="flex items-center gap-3 no-underline" onClick={() => setOpen(false)}>
           <img src="/logo.png" alt="Manufacturing Green Products" className="h-10 w-10 md:h-12 md:w-12 object-contain" />
-          <div className="leading-[1.1] hidden sm:block">
-            <div className="font-wordmark font-extrabold tracking-tight text-on-surface text-[17px]">Manufacturing</div>
-            <div className="font-wordmark font-extrabold tracking-tight text-primary text-[17px]">Green Products</div>
+          <div className="leading-tight hidden sm:block">
+            <div className="font-headline-md font-black text-on-surface text-base">Manufacturing</div>
+            <div className="font-headline-md font-black text-primary text-base">Green Products</div>
           </div>
         </a>
 
