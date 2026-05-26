@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
-import { Public_Sans, Work_Sans } from 'next/font/google'
+import { Public_Sans, Work_Sans, Manrope } from 'next/font/google'
 import './globals.css'
 import { LanguageProvider, HtmlLangScript } from '@/lib/i18n'
 import { en } from '@/lib/i18n/dictionaries/en'
 
 const publicSans = Public_Sans({ subsets: ['latin'], weight: ['300','400','700'], variable: '--font-public-sans', display: 'swap' })
 const workSans   = Work_Sans({   subsets: ['latin'], weight: ['700','900'],       variable: '--font-work-sans',   display: 'swap' })
+const manrope    = Manrope({     subsets: ['latin'], weight: ['600','700','800'],  variable: '--font-manrope',     display: 'swap' })
 
 const SITE = 'https://www.manufacturinggreenproducts.com'
 
@@ -162,7 +163,7 @@ const organizationSchema = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`light ${publicSans.variable} ${workSans.variable}`}>
+    <html lang="en" className={`light ${publicSans.variable} ${workSans.variable} ${manrope.variable}`}>
       <head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
