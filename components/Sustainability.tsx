@@ -9,12 +9,12 @@ import { useT } from '@/lib/i18n'
 const PALLET_UNIVERSITY_URL =
   'https://thepalletuniversity.com/?utm_source=mgpwebsite&utm_medium=referral&utm_campaign=pallet-university'
 
-const imagesAndLinks: { image?: string; iconType?: 'leaf' | 'graduation'; link?: { href: string; trackEvent?: string } }[] = [
+const imagesAndLinks: { image?: string; iconType?: 'leaf'; link?: { href: string; trackEvent?: string } }[] = [
   { image: '/wpa.png', link: { href: 'https://www.westernpallet.org/board-directors/' } },
   { image: '/woodpack.png', link: { href: 'https://woodpackglobal.org/members/default.asp?id=68677551' } },
   { image: '/samsara.png' },
   { iconType: 'leaf' },
-  { iconType: 'graduation', link: { href: PALLET_UNIVERSITY_URL, trackEvent: 'pallet_university_click' } },
+  { image: '/pallet-university.png', link: { href: PALLET_UNIVERSITY_URL, trackEvent: 'pallet_university_click' } },
 ]
 
 function LeafIcon() {
@@ -22,15 +22,6 @@ function LeafIcon() {
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M17 8C8 10 5.9 16.17 3.82 19.11a1 1 0 0 0 1.71 1.04C7 18 9 16.3 12 16c0 0 1 2 0 4" />
       <path d="M9 11.85c3.8-2.4 7.2-5.85 9-9.85" />
-    </svg>
-  )
-}
-
-function GraduationIcon() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-      <path d="M6 12v5c3 3 9 3 12 0v-5" />
     </svg>
   )
 }
@@ -53,8 +44,6 @@ export default function Sustainability() {
                 <div className={meta.image ? 'w-16 h-16 flex items-center justify-center overflow-hidden' : 'w-12 h-12 bg-secondary-container text-primary flex items-center justify-center'}>
                   {meta.image ? (
                     <img src={meta.image} alt={item.title} className="max-w-full max-h-full object-contain" />
-                  ) : meta.iconType === 'graduation' ? (
-                    <GraduationIcon />
                   ) : (
                     <LeafIcon />
                   )}
