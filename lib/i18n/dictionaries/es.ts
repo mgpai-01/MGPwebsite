@@ -66,6 +66,7 @@ export const es: Dictionary = {
       { title: 'Miembro de Woodpack Global', body: 'Parte de una red internacional de fabricantes de tarimas verificados — compartiendo mejores prácticas, capacidad y estándares de calidad consistentes para clientes que envían a todo el mundo.' },
       { title: 'Rastreo de Flota Samsara', body: 'GPS en tiempo real, optimización de rutas y tiempos estimados verificados en cada camión de MGP. Los clientes saben exactamente cuándo llegan sus tarimas, en cada entrega.' },
       { title: 'Abastecimiento Local', body: 'Los aserraderos regionales reducen las emisiones por transporte y apoyan a las economías locales.' },
+      { title: 'The Pallet University', body: 'Educación continua y capacitación certificada para la industria de las tarimas. MGP colabora con Pallet University para mantener a nuestro equipo — y a nuestros clientes — al día en estándares, seguridad y mejores prácticas.' },
     ],
   },
   about: {
