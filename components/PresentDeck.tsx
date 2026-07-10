@@ -75,9 +75,12 @@ export default function PresentDeck() {
   const [cycle, setCycle] = useState(0)
   const [paused, setPaused] = useState(false)
   const [showUi, setShowUi] = useState(true)
+  const [started, setStarted] = useState(false) // gated behind the fullscreen launch tap
 
   const pausedRef = useRef(paused)
   pausedRef.current = paused
+
+  const wakeLockRef = useRef<{ release?: () => void; addEventListener?: (t: string, cb: () => void) => void } | null>(null)
 
   // Slide-machine state.
   const containerRef = useRef<HTMLDivElement>(null)
@@ -100,6 +103,59 @@ export default function PresentDeck() {
     uiTimerRef.current = setTimeout(() => setShowUi(false), UI_IDLE_MS)
   }, [])
 
+  // Launch: enter true fullscreen (needs this user gesture) + hold a screen
+  // wake-lock, then start the loop. Falls through gracefully if either is
+  // unsupported or denied.
+  const begin = useCallback(async () => {
+    try {
+      await document.documentElement.requestFullscreen?.()
+    } catch {
+      /* fullscreen denied — present windowed */
+    }
+    try {
+      const nav = navigator as Navigator & { wakeLock?: { request: (t: 'screen') => Promise<typeof wakeLockRef.current> } }
+      if (nav.wakeLock?.request) {
+        wakeLockRef.current = await nav.wakeLock.request('screen')
+        wakeLockRef.current?.addEventListener?.('release', () => {
+          wakeLockRef.current = null
+        })
+      }
+    } catch {
+      /* wake-lock unsupported — screen may sleep */
+    }
+    setStarted(true)
+    wakeUi()
+  }, [wakeUi])
+
+  // Re-acquire the wake-lock when returning to the tab (browsers drop it when
+  // the page is hidden), and release it on exit.
+  useEffect(() => {
+    if (!started) return
+    const nav = navigator as Navigator & { wakeLock?: { request: (t: 'screen') => Promise<typeof wakeLockRef.current> } }
+    const reacquire = async () => {
+      if (document.visibilityState === 'visible' && !wakeLockRef.current && nav.wakeLock?.request) {
+        try {
+          wakeLockRef.current = await nav.wakeLock.request('screen')
+          wakeLockRef.current?.addEventListener?.('release', () => {
+            wakeLockRef.current = null
+          })
+        } catch {
+          /* ignore */
+        }
+      }
+    }
+    document.addEventListener('visibilitychange', reacquire)
+    return () => {
+      document.removeEventListener('visibilitychange', reacquire)
+      try {
+        wakeLockRef.current?.release?.()
+      } catch {
+        /* ignore */
+      }
+      wakeLockRef.current = null
+    }
+  }, [started])
+
   // Presentation-mode body/html flags: kill the fixed-header padding, disable
   // native smooth-scroll (it fights our rAF driver), hide the scrollbar.
   useEffect(() => {
@@ -109,6 +165,11 @@ export default function PresentDeck() {
     return () => {
       html.classList.remove('present-active')
       document.body.classList.remove('present-active')
+      try {
+        if (document.fullscreenElement) document.exitFullscreen?.()
+      } catch {
+        /* ignore */
+      }
     }
   }, [])
 
@@ -143,6 +204,7 @@ export default function PresentDeck() {
   // The slide driver — a single long-lived rAF loop that advances section by
   // section: glide in, hold to read, then move on. Loops at the end.
   useEffect(() => {
+    if (!started) return
     idxRef.current = 0
     planRef.current = null
     subPhaseRef.current = 'enter'
@@ -233,10 +295,35 @@ export default function PresentDeck() {
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current)
     }
-  }, [])
+  }, [started])
 
   return (
     <div className={showUi ? 'present-show-ui' : undefined}>
+      {/* Fullscreen launch screen — the tap is what lets us enter fullscreen
+          and grab the wake-lock, so the loop only starts after it. */}
+      {!started && (
+        <div className="fixed inset-0 z-[70] flex flex-col items-center justify-center gap-6 bg-[#1c3325] px-6 text-center">
+          <span className="font-label-caps text-label-caps uppercase tracking-[0.22em] text-primary-fixed-dim text-[13px]">
+            Presentation Mode
+          </span>
+          <h1 className="font-headline-lg text-headline-lg max-w-3xl text-white">
+            Manufacturing Green Products
+          </h1>
+          <p className="text-body-lg max-w-md text-white/70">
+            An auto-scrolling showcase for events &amp; mixers — runs fullscreen, holds on each
+            section to read, and loops on its own.
+          </p>
+          <button
+            type="button"
+            onClick={begin}
+            className="mt-2 inline-flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-[15px] font-semibold uppercase tracking-[0.12em] text-white transition-transform hover:scale-[1.03]"
+          >
+            <span className="text-lg leading-none">▶</span> Start presenting
+          </button>
+          <span className="text-[12px] text-white/40">Space to pause · Esc to exit</span>
+        </div>
+      )}
+
       {/* Loop progress bar */}
       <div className="fixed inset-x-0 top-0 z-[60] h-[3px] bg-black/10">
         <div
