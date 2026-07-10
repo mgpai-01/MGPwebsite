@@ -58,3 +58,32 @@ html {
   .text-headline-xl { font-size: 32px !important; }
   .text-headline-lg { font-size: 26px !important; }
 }
+
+/* ---------- Presentation / kiosk mode (route: /present) ---------- */
+/* Disable native smooth-scroll (it fights the rAF auto-scroll driver),
+   drop the fixed-header top padding, and hide the scrollbar for a clean
+   attract-loop look. Toggled by PresentDeck via the `present-active` class. */
+html.present-active { scroll-behavior: auto; scrollbar-width: none; }
+html.present-active::-webkit-scrollbar { width: 0; height: 0; display: none; }
+body.present-active { padding-top: 0 !important; cursor: none; }
+body.present-active.present-show-ui,
+body.present-active .present-show-ui { cursor: auto; }
+
+/* Each section fades + rises in as it enters view; re-fires every loop
+   because the whole deck remounts. */
+.present-reveal {
+  opacity: 0;
+  transform: translateY(40px) scale(0.985);
+  transition:
+    opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.present-reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .present-reveal { transition: none; opacity: 1; transform: none; }
+}
