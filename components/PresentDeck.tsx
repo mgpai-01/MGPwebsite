@@ -16,22 +16,30 @@ import Footer from '@/components/Footer'
 /* ---------------------------------------------------------------------------
  * Presentation / kiosk mode ("attract loop") — for mixers, trade shows, events.
  *
- * The page slowly auto-scrolls top → bottom, then resets and starts over. Every
- * section re-animates from scratch on each pass, so the loop always looks alive.
+ * Slide-style auto-advance: glide to each section, STOP and hold it on screen
+ * long enough to read, then move to the next. A section taller than the screen
+ * is slowly panned through during its hold so nothing is missed. After the last
+ * section it resets to the top and starts over — every section re-animates on
+ * each pass, so the loop always looks alive.
  *
  * Tune the pacing here. Times are in milliseconds.
  * ------------------------------------------------------------------------- */
-const HOLD_TOP_MS = 3200 // pause at the top (lets the hero video + title land)
-const SCROLL_MS = 60000 // time for one full top → bottom pass (~1 min)
-const HOLD_BOTTOM_MS = 4500 // pause at the bottom before looping back
+const TRANSITION_MS = 1000 // glide time between one section and the next
+const DWELL_MS = 5200 // how long to hold on a section that fits on screen (read time)
+const MAX_DWELL_MS = 14000 // cap on the hold for tall sections being panned
+const PAN_SPEED = 42 // px/sec slow-pan reading speed for taller-than-screen sections
+const TOP_GAP = 20 // breathing room above a top-aligned section
 const UI_IDLE_MS = 4000 // hide the on-screen chrome after this much no-input
 
-type Phase = 'holdTop' | 'scroll' | 'holdBottom'
+type SubPhase = 'enter' | 'dwell'
+type Plan = { enterY: number; panToY: number; dwellMs: number }
+
+const easeInOut = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
 
 /** Wraps a section so it fades/slides in the moment it enters the viewport.
  *  One-shot per mount — because the whole deck remounts every loop, this
  *  re-fires on every pass, giving a clean animation reset each time. */
-function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+function Reveal({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -53,7 +61,7 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
   }, [])
 
   return (
-    <div ref={ref} className="present-reveal" style={{ transitionDelay: `${delay}ms` }}>
+    <div ref={ref} className="present-reveal">
       {children}
     </div>
   )
@@ -71,7 +79,12 @@ export default function PresentDeck() {
   const pausedRef = useRef(paused)
   pausedRef.current = paused
 
-  const phaseRef = useRef<Phase>('holdTop')
+  // Slide-machine state.
+  const containerRef = useRef<HTMLDivElement>(null)
+  const idxRef = useRef(0)
+  const planRef = useRef<Plan | null>(null)
+  const subPhaseRef = useRef<SubPhase>('enter')
+  const enterFromRef = useRef(0)
   const phaseStartRef = useRef(0)
   const lastFrameRef = useRef(0)
   const rafRef = useRef<number>()
@@ -127,51 +140,89 @@ export default function PresentDeck() {
     }
   }, [wakeUi])
 
-  // The auto-scroll driver — a single long-lived rAF loop.
+  // The slide driver — a single long-lived rAF loop that advances section by
+  // section: glide in, hold to read, then move on. Loops at the end.
   useEffect(() => {
-    phaseRef.current = 'holdTop'
+    idxRef.current = 0
+    planRef.current = null
+    subPhaseRef.current = 'enter'
+    enterFromRef.current = 0
     phaseStartRef.current = performance.now()
     lastFrameRef.current = performance.now()
     window.scrollTo(0, 0)
-
-    const maxScroll = () =>
-      Math.max(1, document.documentElement.scrollHeight - window.innerHeight)
 
     const step = (now: number) => {
       const dt = now - lastFrameRef.current
       lastFrameRef.current = now
 
-      // While paused, freeze elapsed time so the phase resumes where it left off.
-      if (pausedRef.current) {
-        phaseStartRef.current += dt
-      } else {
-        const elapsed = now - phaseStartRef.current
-        const phase = phaseRef.current
+      const container = containerRef.current
+      const count = container ? container.children.length : 0
 
-        if (phase === 'holdTop') {
-          if (elapsed >= HOLD_TOP_MS) {
-            phaseRef.current = 'scroll'
-            phaseStartRef.current = now
-          }
-        } else if (phase === 'scroll') {
-          const p = Math.min(1, elapsed / SCROLL_MS)
-          window.scrollTo(0, maxScroll() * p)
-          if (p >= 1) {
-            phaseRef.current = 'holdBottom'
-            phaseStartRef.current = now
-          }
-        } else if (phase === 'holdBottom') {
-          if (elapsed >= HOLD_BOTTOM_MS) {
+      // While paused, freeze elapsed time so the current section resumes cleanly.
+      if (pausedRef.current || count === 0) {
+        if (pausedRef.current) phaseStartRef.current += dt
+        rafRef.current = requestAnimationFrame(step)
+        return
+      }
+
+      const viewH = window.innerHeight
+      const maxScroll = Math.max(1, document.documentElement.scrollHeight - viewH)
+      const clamp = (y: number) => Math.max(0, Math.min(maxScroll, y))
+
+      // Measure the current section on demand and build its glide/hold plan.
+      if (!planRef.current) {
+        const el = container!.children[idxRef.current] as HTMLElement
+        const absTop = el.getBoundingClientRect().top + window.scrollY
+        const h = el.offsetHeight
+        const fits = h <= viewH - 8
+        const enterY = clamp(fits ? absTop - (viewH - h) / 2 : absTop - TOP_GAP)
+        const panToY = fits ? enterY : clamp(absTop + h - viewH + TOP_GAP)
+        const dwellMs = fits
+          ? DWELL_MS
+          : Math.min(MAX_DWELL_MS, Math.max(DWELL_MS, (Math.abs(panToY - enterY) / PAN_SPEED) * 1000))
+        planRef.current = { enterY, panToY, dwellMs }
+        enterFromRef.current = window.scrollY
+        subPhaseRef.current = 'enter'
+        phaseStartRef.current = now
+      }
+
+      const plan = planRef.current
+      const elapsed = now - phaseStartRef.current
+
+      if (subPhaseRef.current === 'enter') {
+        const p = Math.min(1, elapsed / TRANSITION_MS)
+        window.scrollTo(0, enterFromRef.current + (plan.enterY - enterFromRef.current) * easeInOut(p))
+        if (p >= 1) {
+          subPhaseRef.current = 'dwell'
+          phaseStartRef.current = now
+        }
+      } else {
+        // Hold on the section; slow-pan through it if it's taller than the screen.
+        const p = Math.min(1, elapsed / plan.dwellMs)
+        if (plan.panToY !== plan.enterY) {
+          window.scrollTo(0, plan.enterY + (plan.panToY - plan.enterY) * p)
+        }
+        if (p >= 1) {
+          planRef.current = null
+          const next = idxRef.current + 1
+          if (next >= count) {
             window.scrollTo(0, 0)
+            idxRef.current = 0
             setCycle((c) => c + 1) // remount the deck → reset every animation
-            phaseRef.current = 'holdTop'
-            phaseStartRef.current = now
+          } else {
+            idxRef.current = next
           }
         }
       }
 
+      // Segment-based progress bar.
       if (barRef.current) {
-        const ratio = Math.min(1, window.scrollY / maxScroll())
+        const active = planRef.current
+        const sub =
+          active && subPhaseRef.current === 'dwell'
+            ? Math.min(1, (now - phaseStartRef.current) / active.dwellMs)
+            : 0
+        const ratio = count ? Math.min(1, (idxRef.current + sub) / count) : 0
         barRef.current.style.transform = `scaleX(${ratio})`
       }
 
@@ -190,7 +241,7 @@ export default function PresentDeck() {
       <div className="fixed inset-x-0 top-0 z-[60] h-[3px] bg-black/10">
         <div
           ref={barRef}
-          className="h-full origin-left bg-primary"
+          className="h-full origin-left bg-primary transition-transform duration-300 ease-out"
           style={{ transform: 'scaleX(0)' }}
         />
       </div>
@@ -248,7 +299,7 @@ export default function PresentDeck() {
       </div>
 
       {/* The deck. `key={cycle}` remounts it every loop for a full animation reset. */}
-      <div key={cycle}>
+      <div key={cycle} ref={containerRef}>
         <Reveal>
           <Hero />
         </Reveal>
