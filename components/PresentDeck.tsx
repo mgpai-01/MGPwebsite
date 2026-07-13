@@ -30,6 +30,7 @@ const MAX_DWELL_MS = 14000 // cap on the hold for tall sections being panned
 const PAN_SPEED = 42 // px/sec slow-pan reading speed for taller-than-screen sections
 const TOP_GAP = 20 // breathing room above a top-aligned section
 const UI_IDLE_MS = 4000 // hide the on-screen chrome after this much no-input
+const MANUAL_RESUME_MS = 1200 // after a hand-scroll stops, resume the loop from there
 
 type SubPhase = 'enter' | 'dwell'
 type Plan = { enterY: number; panToY: number; dwellMs: number }
@@ -93,6 +94,8 @@ export default function PresentDeck() {
   const rafRef = useRef<number>()
   const barRef = useRef<HTMLDivElement>(null)
   const uiTimerRef = useRef<ReturnType<typeof setTimeout>>()
+  const manualRef = useRef(false) // true while the viewer is hand-scrolling
+  const manualTimerRef = useRef<ReturnType<typeof setTimeout>>()
 
   const exit = useCallback(() => router.push('/'), [router])
 
@@ -227,6 +230,13 @@ export default function PresentDeck() {
         return
       }
 
+      // Viewer is scrolling by hand — stop driving so we don't fight them; a
+      // separate handler re-syncs to their section and resumes shortly after.
+      if (manualRef.current) {
+        rafRef.current = requestAnimationFrame(step)
+        return
+      }
+
       const viewH = window.innerHeight
       const maxScroll = Math.max(1, document.documentElement.scrollHeight - viewH)
       const clamp = (y: number) => Math.max(0, Math.min(maxScroll, y))
@@ -296,6 +306,55 @@ export default function PresentDeck() {
       if (rafRef.current) cancelAnimationFrame(rafRef.current)
     }
   }, [started])
+
+  // Let people grab the presentation: hand-scrolling suspends the auto-advance,
+  // and shortly after they stop it resumes from whichever section they landed on.
+  useEffect(() => {
+    if (!started) return
+
+    const resync = () => {
+      const container = containerRef.current
+      if (container && container.children.length) {
+        const mid = window.scrollY + window.innerHeight / 2
+        let best = 0
+        let bestDist = Infinity
+        for (let i = 0; i < container.children.length; i++) {
+          const el = container.children[i] as HTMLElement
+          const center = el.getBoundingClientRect().top + window.scrollY + el.offsetHeight / 2
+          const d = Math.abs(center - mid)
+          if (d < bestDist) {
+            bestDist = d
+            best = i
+          }
+        }
+        idxRef.current = best
+        planRef.current = null // re-plan: glide to that section, then continue the loop
+      }
+      manualRef.current = false
+    }
+
+    const markManual = () => {
+      manualRef.current = true
+      wakeUi()
+      if (manualTimerRef.current) clearTimeout(manualTimerRef.current)
+      manualTimerRef.current = setTimeout(resync, MANUAL_RESUME_MS)
+    }
+
+    const navKeys = new Set(['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End'])
+    const onNavKey = (e: KeyboardEvent) => {
+      if (navKeys.has(e.key)) markManual()
+    }
+
+    window.addEventListener('wheel', markManual, { passive: true })
+    window.addEventListener('touchmove', markManual, { passive: true })
+    window.addEventListener('keydown', onNavKey)
+    return () => {
+      window.removeEventListener('wheel', markManual)
+      window.removeEventListener('touchmove', markManual)
+      window.removeEventListener('keydown', onNavKey)
+      if (manualTimerRef.current) clearTimeout(manualTimerRef.current)
+    }
+  }, [started, wakeUi])
 
   return (
     <div className={showUi ? 'present-show-ui' : undefined}>
@@ -382,7 +441,7 @@ export default function PresentDeck() {
         }`}
       >
         <span className="rounded-full bg-black/45 px-4 py-1.5 text-[11px] font-medium tracking-wide text-white/90 backdrop-blur">
-          Space to pause · Esc to exit
+          Scroll to jump · Space to pause · Esc to exit
         </span>
       </div>
 
