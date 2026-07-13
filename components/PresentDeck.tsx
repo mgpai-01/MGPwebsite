@@ -385,6 +385,17 @@ export default function PresentDeck() {
         </span>
       </div>
 
+      {/* Persistent call-to-action — stays visible the whole loop so attendees
+          can always see and tap the number to call. */}
+      {started && (
+        <a
+          href="tel:+19098271438"
+          className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-[15px] font-semibold tracking-wide text-white no-underline shadow-lg ring-1 ring-white/15"
+        >
+          <span className="text-base leading-none">📞</span> (909) 827-1438
+        </a>
+      )}
+
       {/* The deck. `key={cycle}` remounts it every loop for a full animation reset. */}
       <div key={cycle} ref={containerRef}>
         <Reveal>
