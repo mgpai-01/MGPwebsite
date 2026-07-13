@@ -333,9 +333,10 @@ export default function PresentDeck() {
         />
       </div>
 
-      {/* Presenting chrome — fades out when idle */}
+      {/* Presenting chrome + staff controls — fades out when idle. Kept on the
+          left so the top-right corner is free for the persistent phone pill. */}
       <div
-        className={`fixed inset-x-0 top-0 z-50 flex items-center justify-between px-6 py-4 transition-opacity duration-500 ${
+        className={`fixed inset-x-0 top-0 z-50 flex items-center gap-3 px-6 py-4 transition-opacity duration-500 ${
           showUi ? 'opacity-100' : 'opacity-0'
         }`}
       >
@@ -385,14 +386,14 @@ export default function PresentDeck() {
         </span>
       </div>
 
-      {/* Persistent call-to-action — stays visible the whole loop so attendees
-          can always see and tap the number to call. */}
+      {/* Persistent call-to-action — top-right, stays visible the whole loop so
+          attendees can always see and tap the number to call. */}
       {started && (
         <a
           href="tel:+19098271438"
-          className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-[15px] font-semibold tracking-wide text-white no-underline shadow-lg ring-1 ring-white/15"
+          className="fixed right-5 top-4 z-50 inline-flex items-center gap-2.5 rounded-full bg-primary px-6 py-3.5 text-[18px] font-semibold tracking-wide text-white no-underline shadow-lg ring-1 ring-white/15"
         >
-          <span className="text-base leading-none">📞</span> (909) 827-1438
+          <span className="text-xl leading-none">📞</span> (909) 827-1438
         </a>
       )}
 
