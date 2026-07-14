@@ -9,12 +9,13 @@ import { useT } from '@/lib/i18n'
 const PALLET_UNIVERSITY_URL =
   'https://thepalletuniversity.com/?utm_source=mgpwebsite&utm_medium=referral&utm_campaign=pallet-university'
 
-const imagesAndLinks: { image?: string; iconType?: 'leaf'; link?: { href: string; trackEvent?: string } }[] = [
+const imagesAndLinks: { image?: string; iconType?: 'leaf'; wide?: boolean; link?: { href: string; trackEvent?: string } }[] = [
   { image: '/wpa.png', link: { href: 'https://www.westernpallet.org/board-directors/' } },
   { image: '/woodpack.png', link: { href: 'https://woodpackglobal.org/members/default.asp?id=68677551' } },
   { image: '/samsara.png' },
   { iconType: 'leaf' },
   { image: '/pallet-university.png', link: { href: PALLET_UNIVERSITY_URL, trackEvent: 'pallet_university_click' } },
+  { image: '/pallet-collective.png', wide: true, link: { href: 'https://palletcollective.com/' } },
 ]
 
 function LeafIcon() {
@@ -41,9 +42,9 @@ export default function Sustainability() {
             const meta = imagesAndLinks[i] ?? {}
             return (
               <div key={item.title} className="border border-outline-variant bg-surface-container-lowest p-stack-md flex flex-col gap-stack-sm">
-                <div className={meta.image ? 'w-16 h-16 flex items-center justify-center overflow-hidden' : 'w-12 h-12 bg-secondary-container text-primary flex items-center justify-center'}>
+                <div className={meta.image ? (meta.wide ? 'h-16 flex items-center overflow-hidden' : 'w-16 h-16 flex items-center justify-center overflow-hidden') : 'w-12 h-12 bg-secondary-container text-primary flex items-center justify-center'}>
                   {meta.image ? (
-                    <img src={meta.image} alt={item.title} className="max-w-full max-h-full object-contain" />
+                    <img src={meta.image} alt={item.title} className={meta.wide ? 'h-10 w-auto max-w-[210px] object-contain' : 'max-w-full max-h-full object-contain'} />
                   ) : (
                     <LeafIcon />
                   )}
