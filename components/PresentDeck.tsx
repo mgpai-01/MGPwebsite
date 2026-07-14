@@ -392,14 +392,16 @@ export default function PresentDeck() {
             </span>
 
             <div
-              className="flex h-[204px] w-[204px] items-center justify-center border border-white/15"
-              style={{ borderRadius: '50%' }}
+              className="relative h-64 w-64 overflow-hidden"
+              style={{ borderRadius: '50%', boxShadow: '0 24px 55px rgba(0,0,0,0.55)' }}
             >
+              {/* Zoom in so the emblem fills the circle, cropping the logo's
+                  dead navy margin. */}
               <img
                 src="/logo.png"
                 alt="Manufacturing Green Products logo"
-                className="h-44 w-44 object-cover"
-                style={{ borderRadius: '50%', boxShadow: '0 0 0 1px rgba(233,228,216,0.14), 0 0 70px rgba(58,120,80,0.5)' }}
+                className="absolute left-1/2 top-1/2 max-w-none -translate-x-1/2 -translate-y-1/2"
+                style={{ width: '152%', height: '152%' }}
               />
             </div>
 
