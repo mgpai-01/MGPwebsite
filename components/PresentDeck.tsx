@@ -392,8 +392,8 @@ export default function PresentDeck() {
             </span>
 
             <div
-              className="relative h-64 w-64 overflow-hidden"
-              style={{ borderRadius: '50%', boxShadow: '0 24px 55px rgba(0,0,0,0.55)' }}
+              className="relative h-[200px] w-[200px] overflow-hidden"
+              style={{ borderRadius: '50%', boxShadow: '0 20px 48px rgba(0,0,0,0.5)' }}
             >
               {/* Zoom in so the emblem fills the circle, cropping the logo's
                   dead navy margin. */}
