@@ -361,25 +361,80 @@ export default function PresentDeck() {
       {/* Fullscreen launch screen — the tap is what lets us enter fullscreen
           and grab the wake-lock, so the loop only starts after it. */}
       {!started && (
-        <div className="fixed inset-0 z-[70] flex flex-col items-center justify-center gap-6 bg-[#1c3325] px-6 text-center">
-          <span className="font-label-caps text-label-caps uppercase tracking-[0.22em] text-primary-fixed-dim text-[13px]">
-            Presentation Mode
-          </span>
-          <h1 className="font-headline-lg text-headline-lg max-w-3xl text-white">
-            Manufacturing Green Products
-          </h1>
-          <p className="text-body-lg max-w-md text-white/70">
-            An auto-scrolling showcase for events &amp; mixers — runs fullscreen, holds on each
-            section to read, and loops on its own.
-          </p>
-          <button
-            type="button"
-            onClick={begin}
-            className="mt-2 inline-flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-[15px] font-semibold uppercase tracking-[0.12em] text-white transition-transform hover:scale-[1.03]"
+        <div className="fixed inset-0 z-[70] overflow-hidden bg-[#0f1913]">
+          {/* Pallet footage, dimmed behind a green scrim for ambient texture. */}
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            className="absolute inset-0 h-full w-full object-cover"
           >
-            <span className="text-lg leading-none">▶</span> Start presenting
-          </button>
-          <span className="text-[12px] text-white/40">Space to pause · Esc to exit</span>
+            <source src="/mp_.mp4" type="video/mp4" />
+          </video>
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'radial-gradient(130% 90% at 50% 30%, rgba(39,80,55,0.55) 0%, rgba(26,48,37,0.85) 46%, rgba(12,20,15,0.96) 100%)',
+            }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{ background: 'radial-gradient(60% 55% at 50% 46%, rgba(0,0,0,0.35) 0%, transparent 70%)' }}
+          />
+
+          {/* Content */}
+          <div className="relative z-10 flex h-full flex-col items-center justify-center gap-6 px-6 text-center">
+            <span className="text-[12.5px] font-semibold uppercase tracking-[0.28em] text-[#a7cbb4]">
+              Fontana, California&nbsp;&nbsp;·&nbsp;&nbsp;Est. 1980
+            </span>
+
+            <div
+              className="flex h-[204px] w-[204px] items-center justify-center border border-white/15"
+              style={{ borderRadius: '50%' }}
+            >
+              <img
+                src="/logo.png"
+                alt="Manufacturing Green Products logo"
+                className="h-44 w-44 object-cover"
+                style={{ borderRadius: '50%', boxShadow: '0 0 0 1px rgba(233,228,216,0.14), 0 0 70px rgba(58,120,80,0.5)' }}
+              />
+            </div>
+
+            <h1
+              className="font-headline-lg text-headline-lg max-w-3xl text-[#f4f2ec]"
+              style={{ textShadow: '0 2px 24px rgba(0,0,0,0.5)' }}
+            >
+              Manufacturing Green Products
+            </h1>
+
+            <div className="flex items-center gap-3.5">
+              <span className="h-px w-[54px] bg-white/25" />
+              <span className="h-[5px] w-[5px] rotate-45 bg-[#6a9e78]" />
+              <span className="h-px w-[54px] bg-white/25" />
+            </div>
+
+            <span
+              className="text-[14px] font-semibold uppercase tracking-[0.16em] text-[#d5e4da]"
+              style={{ textShadow: '0 1px 12px rgba(0,0,0,0.5)' }}
+            >
+              ISPM-15 Certified&nbsp;&nbsp;·&nbsp;&nbsp;WPA Director&nbsp;&nbsp;·&nbsp;&nbsp;45+ Years
+            </span>
+
+            <button
+              type="button"
+              onClick={begin}
+              className="mt-3 inline-flex items-center gap-3 rounded-full bg-primary px-9 py-4 text-[14px] font-semibold uppercase tracking-[0.14em] text-white shadow-lg ring-1 ring-white/10 transition-transform hover:scale-[1.03]"
+            >
+              <span className="text-[11px] leading-none">▶</span> Start Presenting
+            </button>
+
+            <span className="mt-1 text-[12px] tracking-wide text-white/40">
+              Scroll to jump · Space to pause · Esc to exit
+            </span>
+          </div>
         </div>
       )}
 
