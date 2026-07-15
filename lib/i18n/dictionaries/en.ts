@@ -6,6 +6,7 @@ export const en = {
     about: 'About',
     locations: 'Locations',
     faq: 'FAQ',
+    schedule: 'Schedule',
     cta: 'Get a Quote',
     languageLabel: 'Language',
   },

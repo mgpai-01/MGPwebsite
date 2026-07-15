@@ -8,6 +8,7 @@ export const es: Dictionary = {
     about: 'Nosotros',
     locations: 'Ubicaciones',
     faq: 'Preguntas',
+    schedule: 'Agendar',
     cta: 'Solicitar Cotización',
     languageLabel: 'Idioma',
   },

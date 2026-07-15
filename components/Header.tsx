@@ -16,6 +16,7 @@ export default function Header() {
     { href: '#about', label: t.nav.about },
     { href: '#locations', label: t.nav.locations },
     { href: '#faq', label: t.nav.faq },
+    { href: '/schedule', label: t.nav.schedule },
   ]
 
   useEffect(() => {

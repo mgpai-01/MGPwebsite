@@ -8,6 +8,7 @@ export const zh: Dictionary = {
     about: '关于我们',
     locations: '位置',
     faq: '常见问题',
+    schedule: '预约',
     cta: '获取报价',
     languageLabel: '语言',
   },
