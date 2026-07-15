@@ -20,7 +20,7 @@ const VCARD = [
   'EMAIL;TYPE=INTERNET:Moses@palletmail.com',
   // Three locations. The item1./X-ABLabel grouping gives each a custom label
   // (HQ / Merrill Yard / Riverside Yard) that phones display on the saved contact.
-  'item1.ADR;TYPE=WORK;TYPE=PREF:;;8386 Sultana Ave;Fontana;CA;92335;USA',
+  'item1.ADR;TYPE=WORK:;;8386 Sultana Ave;Fontana;CA;92335;USA',
   'item1.X-ABLabel:HQ',
   'item2.ADR;TYPE=WORK:;;14619 Merrill Ave;Fontana;CA;92335;USA',
   'item2.X-ABLabel:Merrill Yard',
