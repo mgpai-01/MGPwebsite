@@ -18,7 +18,14 @@ const VCARD = [
   'TITLE:Chief Financial Officer',
   'TEL;TYPE=CELL,VOICE:+17604033816',
   'EMAIL;TYPE=INTERNET:Moses@palletmail.com',
-  'ADR;TYPE=WORK:;;8386 Sultana Ave;Fontana;CA;92335;USA',
+  // Three locations. The item1./X-ABLabel grouping gives each a custom label
+  // (HQ / Merrill Yard / Riverside Yard) that phones display on the saved contact.
+  'item1.ADR;TYPE=WORK;TYPE=PREF:;;8386 Sultana Ave;Fontana;CA;92335;USA',
+  'item1.X-ABLabel:HQ',
+  'item2.ADR;TYPE=WORK:;;14619 Merrill Ave;Fontana;CA;92335;USA',
+  'item2.X-ABLabel:Merrill Yard',
+  'item3.ADR;TYPE=WORK:;;1326 W Citrus St;Riverside;CA;92507;USA',
+  'item3.X-ABLabel:Riverside Yard',
   'URL:https://www.manufacturinggreenproducts.com',
   'END:VCARD',
 ].join('\n')
