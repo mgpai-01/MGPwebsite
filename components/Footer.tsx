@@ -2,8 +2,8 @@
 
 import { useT } from '@/lib/i18n'
 
-const productHrefs = ['#products', '#products', '#products', '#products']
-const companyHrefs = ['#about', '#sustainability', '#industries', '#locations', '#quote']
+const productHrefs = ['/#products', '/#products', '/#products', '/#products']
+const companyHrefs = ['/#about', '/#sustainability', '/#industries', '/#locations', '/#quote']
 
 function FooterColumn({ title, items }: { title: string; items: { label: string; href: string }[] }) {
   return (
@@ -23,9 +23,9 @@ export default function Footer() {
   const contactItems = [
     { label: '(909) 827-1438', href: 'tel:+19098271438' },
     { label: 'mgp@palletmail.com', href: 'mailto:mgp@palletmail.com' },
-    { label: '8386 Sultana Ave, Fontana CA', href: '#locations' },
-    { label: '14619 Merrill Ave, Fontana CA', href: '#locations' },
-    { label: '1326 W Citrus St, Riverside CA', href: '#locations' },
+    { label: '8386 Sultana Ave, Fontana CA', href: '/#locations' },
+    { label: '14619 Merrill Ave, Fontana CA', href: '/#locations' },
+    { label: '1326 W Citrus St, Riverside CA', href: '/#locations' },
   ]
   return (
     <footer className="block w-full border-t-4 border-primary bg-inverse-surface text-primary-fixed">

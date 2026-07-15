@@ -10,12 +10,12 @@ export default function Header() {
   const langRef = useRef<HTMLDivElement>(null)
 
   const links = [
-    { href: '#products', label: t.nav.products },
-    { href: '#industries', label: t.nav.industries },
-    { href: '#sustainability', label: t.nav.sustainability },
-    { href: '#about', label: t.nav.about },
-    { href: '#locations', label: t.nav.locations },
-    { href: '#faq', label: t.nav.faq },
+    { href: '/#products', label: t.nav.products },
+    { href: '/#industries', label: t.nav.industries },
+    { href: '/#sustainability', label: t.nav.sustainability },
+    { href: '/#about', label: t.nav.about },
+    { href: '/#locations', label: t.nav.locations },
+    { href: '/#faq', label: t.nav.faq },
     { href: '/schedule', label: t.nav.schedule },
   ]
 
@@ -44,7 +44,7 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 w-full bg-surface/95 backdrop-blur-sm z-50 border-b-2 border-outline-variant">
       <div className="flex justify-between items-center px-gutter py-stack-sm">
-        <a href="#" className="flex items-center gap-3 no-underline" onClick={() => setOpen(false)}>
+        <a href="/" className="flex items-center gap-3 no-underline" onClick={() => setOpen(false)}>
           <img src="/logo.png" alt="Manufacturing Green Products" className="h-10 w-10 md:h-12 md:w-12 object-contain" />
           <div className="leading-[1.02] hidden sm:block">
             <div className="font-headline-md font-black text-on-surface text-base tracking-[-0.01em]">Manufacturing</div>
@@ -95,7 +95,7 @@ export default function Header() {
             )}
           </div>
 
-          <a href="#quote" className="hidden sm:inline-block bg-primary text-on-primary font-label-caps text-label-caps px-stack-md py-stack-sm uppercase hover:bg-primary-container transition-colors no-underline">{t.nav.cta}</a>
+          <a href="/#quote" className="hidden sm:inline-block bg-primary text-on-primary font-label-caps text-label-caps px-stack-md py-stack-sm uppercase hover:bg-primary-container transition-colors no-underline">{t.nav.cta}</a>
           <button
             aria-label={open ? 'Close menu' : 'Open menu'}
             onClick={() => setOpen((v) => !v)}
@@ -116,7 +116,7 @@ export default function Header() {
             {links.map((l) => (
               <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="font-headline-md text-label-caps uppercase tracking-wider text-on-surface-variant font-medium py-3 border-b border-outline-variant/40 last:border-b-0 hover:text-primary">{l.label}</a>
             ))}
-            <a href="#quote" onClick={() => setOpen(false)} className="mt-2 bg-primary text-on-primary text-center font-label-caps text-label-caps px-stack-md py-stack-sm uppercase hover:bg-primary-container transition-colors no-underline">{t.nav.cta}</a>
+            <a href="/#quote" onClick={() => setOpen(false)} className="mt-2 bg-primary text-on-primary text-center font-label-caps text-label-caps px-stack-md py-stack-sm uppercase hover:bg-primary-container transition-colors no-underline">{t.nav.cta}</a>
           </nav>
         </div>
       )}

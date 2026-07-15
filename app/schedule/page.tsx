@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: 'Schedule an Appointment',
@@ -15,35 +17,9 @@ export default function SchedulePage() {
   const embedUrl = `${CALENDLY_URL}?hide_gdpr_banner=1&primary_color=2a6b40`
 
   return (
-    <div className="min-h-screen bg-surface">
-      {/* Slim branded top bar (fixed — matches the site's 88px body offset) */}
-      <header className="fixed left-0 top-0 z-50 w-full border-b-2 border-outline-variant bg-surface/95 backdrop-blur-sm">
-        <div className="max-w-container-max mx-auto flex items-center justify-between px-gutter py-stack-sm">
-          <a href="/" className="flex items-center gap-3 no-underline">
-            <img
-              src="/logo.png"
-              alt="Manufacturing Green Products"
-              className="h-10 w-10 object-contain md:h-12 md:w-12"
-            />
-            <div className="hidden leading-[1.02] sm:block">
-              <div className="font-headline-md text-base font-black tracking-[-0.01em] text-on-surface">
-                Manufacturing
-              </div>
-              <div className="font-headline-md text-base font-black tracking-[-0.01em] text-primary">
-                Green Products
-              </div>
-            </div>
-          </a>
-          <a
-            href="/#quote"
-            className="bg-primary px-stack-md py-stack-sm font-label-caps text-label-caps uppercase text-on-primary no-underline transition-colors hover:bg-primary-container"
-          >
-            Get a Quote
-          </a>
-        </div>
-      </header>
-
-      <main className="px-gutter py-section-padding">
+    <>
+      <Header />
+      <main className="bg-surface px-gutter py-section-padding">
         <div className="max-w-container-max mx-auto flex flex-col gap-stack-lg">
           <div className="flex max-w-2xl flex-col gap-stack-sm">
             <span className="font-label-caps text-label-caps uppercase tracking-[0.16em] text-primary">
@@ -83,6 +59,7 @@ export default function SchedulePage() {
           </p>
         </div>
       </main>
-    </div>
+      <Footer />
+    </>
   )
 }
