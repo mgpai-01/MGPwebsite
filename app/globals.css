@@ -100,3 +100,24 @@ body.present-active .present-show-ui { cursor: auto; }
 @media (prefers-reduced-motion: reduce) {
   .sched-in { animation: none; opacity: 1; transform: none; }
 }
+
+/* ---------- Global page transition (enter fade-up + exit fade-out) ----------
+   Gives every full-page navigation the same aesthetic as /schedule: content
+   rises + fades in on arrival, and fades out when a nav link is clicked.
+   Scoped to <main> so the fixed header stays put (transforming an ancestor
+   of a position:fixed element would break it). */
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+main { animation: page-enter 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+main.page-leaving {
+  animation: none;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.24s ease, transform 0.24s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main, main.page-leaving { animation: none; transition: none; opacity: 1; transform: none; }
+}

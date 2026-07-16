@@ -41,10 +41,26 @@ export default function Header() {
   const pick = (l: Locale) => { setLocale(l); setLangOpen(false) }
   const current = LOCALES.find((l) => l.code === locale) ?? LOCALES[0]
 
+  // Fade the current page out before navigating to a different page, so leaving
+  // /schedule (or any page) matches the fade-up entrance instead of hard-flashing.
+  const navigate = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // Let the browser handle modified clicks (new tab, etc.).
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return
+    const dest = new URL(href, window.location.origin)
+    // Same-page hash links keep their native smooth scroll — only fade on real
+    // cross-page navigations.
+    if (dest.pathname === window.location.pathname) { setOpen(false); return }
+    if (typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    e.preventDefault()
+    setOpen(false)
+    document.querySelector('main')?.classList.add('page-leaving')
+    window.setTimeout(() => { window.location.href = href }, 220)
+  }
+
   return (
     <header className="fixed top-0 left-0 w-full bg-surface/95 backdrop-blur-sm z-50 border-b-2 border-outline-variant">
       <div className="flex justify-between items-center px-gutter py-stack-sm">
-        <a href="/" className="flex items-center gap-3 no-underline" onClick={() => setOpen(false)}>
+        <a href="/" className="flex items-center gap-3 no-underline" onClick={(e) => navigate(e, '/')}>
           <img src="/logo.png" alt="Manufacturing Green Products" className="h-10 w-10 md:h-12 md:w-12 object-contain" />
           <div className="leading-[1.02] hidden sm:block">
             <div className="font-headline-md font-black text-on-surface text-base tracking-[-0.01em]">Manufacturing</div>
@@ -54,7 +70,7 @@ export default function Header() {
 
         <nav className="hidden md:flex gap-stack-md">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="nav-link font-headline-md text-label-caps uppercase tracking-wider text-on-surface-variant font-medium hover:text-primary transition-all duration-200 active:scale-95">{l.label}</a>
+            <a key={l.href} href={l.href} onClick={(e) => navigate(e, l.href)} className="nav-link font-headline-md text-label-caps uppercase tracking-wider text-on-surface-variant font-medium hover:text-primary transition-all duration-200 active:scale-95">{l.label}</a>
           ))}
         </nav>
 
@@ -95,7 +111,7 @@ export default function Header() {
             )}
           </div>
 
-          <a href="/#quote" className="hidden sm:inline-block bg-primary text-on-primary font-label-caps text-label-caps px-stack-md py-stack-sm uppercase hover:bg-primary-container transition-colors no-underline">{t.nav.cta}</a>
+          <a href="/#quote" onClick={(e) => navigate(e, '/#quote')} className="hidden sm:inline-block bg-primary text-on-primary font-label-caps text-label-caps px-stack-md py-stack-sm uppercase hover:bg-primary-container transition-colors no-underline">{t.nav.cta}</a>
           <button
             aria-label={open ? 'Close menu' : 'Open menu'}
             onClick={() => setOpen((v) => !v)}
@@ -114,9 +130,9 @@ export default function Header() {
         <div className="md:hidden border-t border-outline-variant bg-surface">
           <nav className="flex flex-col px-gutter py-4 gap-1">
             {links.map((l) => (
-              <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="font-headline-md text-label-caps uppercase tracking-wider text-on-surface-variant font-medium py-3 border-b border-outline-variant/40 last:border-b-0 hover:text-primary">{l.label}</a>
+              <a key={l.href} href={l.href} onClick={(e) => navigate(e, l.href)} className="font-headline-md text-label-caps uppercase tracking-wider text-on-surface-variant font-medium py-3 border-b border-outline-variant/40 last:border-b-0 hover:text-primary">{l.label}</a>
             ))}
-            <a href="/#quote" onClick={() => setOpen(false)} className="mt-2 bg-primary text-on-primary text-center font-label-caps text-label-caps px-stack-md py-stack-sm uppercase hover:bg-primary-container transition-colors no-underline">{t.nav.cta}</a>
+            <a href="/#quote" onClick={(e) => navigate(e, '/#quote')} className="mt-2 bg-primary text-on-primary text-center font-label-caps text-label-caps px-stack-md py-stack-sm uppercase hover:bg-primary-container transition-colors no-underline">{t.nav.cta}</a>
           </nav>
         </div>
       )}
