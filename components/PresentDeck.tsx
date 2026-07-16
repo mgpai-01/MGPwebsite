@@ -327,14 +327,11 @@ export default function PresentDeck() {
             best = i
           }
         }
-        idxRef.current = best
-        // Resume by holding exactly where they left off — no jarring re-center
-        // glide — then continue the loop forward from the next section.
-        const y = window.scrollY
-        planRef.current = { enterY: y, panToY: y, dwellMs: DWELL_MS }
-        enterFromRef.current = y
-        subPhaseRef.current = 'dwell'
-        phaseStartRef.current = performance.now()
+        // Resume the loop by moving forward from where they landed: glide on to
+        // the next section (downward) so motion — and the progress line — start
+        // up again promptly, without snapping back to re-center.
+        idxRef.current = Math.min(best + 1, container.children.length - 1)
+        planRef.current = null
       }
       manualRef.current = false
     }
