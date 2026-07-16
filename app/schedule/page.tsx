@@ -20,7 +20,7 @@ export default function SchedulePage() {
       <Header />
       <main className="bg-surface px-gutter py-section-padding">
         <div className="max-w-container-max mx-auto flex flex-col gap-stack-lg">
-          <div className="flex max-w-2xl flex-col gap-stack-sm">
+          <div className="sched-in flex max-w-2xl flex-col gap-stack-sm">
             <span className="font-label-caps text-label-caps uppercase tracking-[0.16em] text-primary">
               Appointments
             </span>
@@ -33,7 +33,7 @@ export default function SchedulePage() {
 
           {/* Calendly inline embed */}
           <div
-            className="overflow-hidden border border-outline-variant bg-surface-container-lowest"
+            className="sched-in sched-in-2 overflow-hidden border border-outline-variant bg-surface-container-lowest"
             style={{ minHeight: 760 }}
           >
             <iframe
@@ -45,7 +45,7 @@ export default function SchedulePage() {
             />
           </div>
 
-          <p className="font-body-md text-body-md text-on-surface-variant">
+          <p className="sched-in sched-in-3 font-body-md text-body-md text-on-surface-variant">
             Prefer to talk now? Call{' '}
             <a href="tel:+19098271438" className="text-primary hover:underline">
               (909) 827-1438

@@ -87,3 +87,16 @@ body.present-active .present-show-ui { cursor: auto; }
 @media (prefers-reduced-motion: reduce) {
   .present-reveal { transition: none; opacity: 1; transform: none; }
 }
+
+/* ---------- Schedule page entrance transition ---------- */
+@keyframes sched-in {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.sched-in   { opacity: 0; animation: sched-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.sched-in-2 { animation-delay: 0.12s; }
+.sched-in-3 { animation-delay: 0.26s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sched-in { animation: none; opacity: 1; transform: none; }
+}
