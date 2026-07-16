@@ -67,8 +67,8 @@ export const zh: Dictionary = {
       { title: 'Woodpack Global 成员', body: '我们是经过严格审核的国际托盘制造商网络的一员——分享最佳实践、产能资源,以及为全球客户提供一致的质量标准。' },
       { title: 'Samsara 车队跟踪', body: '每辆 MGP 货车均配备实时 GPS、路线优化和经核实的到达时间。客户可以随时准确掌握托盘的送达时间。' },
       { title: '本地采购', body: '区域性锯木厂可降低运输排放,并支持本地经济发展。' },
-      { title: 'Pallet University', body: '面向托盘行业的持续教育与认证培训。MGP 与 Pallet University 合作,确保我们的团队和客户始终掌握最新的行业标准、安全规范与最佳实践。' },
-      { title: 'The Pallet Collective', body: '作为 The Pallet Collective 的成员,MGP 接入了一个由独立托盘供应商组成的全国网络——为客户提供覆盖全美的产能、完全透明且无中间商的定价,以及实时托盘追踪,同时兼具本地化的责任担当。' },
+      { title: 'Pallet University 合作伙伴', body: '面向托盘行业的持续教育与认证培训。MGP 与 Pallet University 合作,确保我们的团队和客户始终掌握最新的行业标准、安全规范与最佳实践。' },
+      { title: 'The Pallet Collective 成员', body: '作为 The Pallet Collective 的成员,MGP 接入了一个由独立托盘供应商组成的全国网络——为客户提供覆盖全美的产能、完全透明且无中间商的定价,以及实时托盘追踪,同时兼具本地化的责任担当。' },
     ],
   },
   about: {

@@ -65,8 +65,8 @@ export const en = {
       { title: 'Woodpack Global Member', body: 'Part of an international network of vetted pallet manufacturers — sharing best practices, capacity, and consistent quality standards for clients shipping worldwide.' },
       { title: 'Samsara Fleet Tracking', body: 'Real-time GPS, route optimization, and verified ETAs across every MGP truck. Customers see exactly when pallets arrive, every time.' },
       { title: 'Local Sourcing', body: 'Regional mills reduce transportation emissions and support local economies.' },
-      { title: 'Pallet University', body: 'Continuing education and certified training for the pallet industry. MGP partners with Pallet University to keep our team — and our customers — current on standards, safety, and best practices.' },
-      { title: 'The Pallet Collective', body: 'As a member of The Pallet Collective, MGP taps a national network of independent pallet suppliers — giving customers coast-to-coast capacity, fully transparent broker-free pricing, and real-time pallet tracking, all with local accountability.' },
+      { title: 'Pallet University Partner', body: 'Continuing education and certified training for the pallet industry. MGP partners with Pallet University to keep our team — and our customers — current on standards, safety, and best practices.' },
+      { title: 'The Pallet Collective Member', body: 'As a member of The Pallet Collective, MGP taps a national network of independent pallet suppliers — giving customers coast-to-coast capacity, fully transparent broker-free pricing, and real-time pallet tracking, all with local accountability.' },
     ],
   },
   about: {
