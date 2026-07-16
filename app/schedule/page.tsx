@@ -9,9 +9,8 @@ export const metadata: Metadata = {
   alternates: { canonical: '/schedule' },
 }
 
-// TODO: replace with Moses's real Calendly booking link once the Calendly
-// account is set up (e.g. https://calendly.com/moses-mgp/consultation).
-const CALENDLY_URL = 'https://calendly.com/mgp-appointments/consultation'
+// Moses's Calendly booking link.
+const CALENDLY_URL = 'https://calendly.com/moses-palletmail/30min'
 
 export default function SchedulePage() {
   const embedUrl = `${CALENDLY_URL}?hide_gdpr_banner=1&primary_color=2a6b40`
