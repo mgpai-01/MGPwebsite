@@ -168,6 +168,16 @@ export const en = {
     rights: 'All rights reserved.',
     certs: 'ISPM-15 Certified · WPA Director · Woodpack Global Member',
   },
+  schedulePage: {
+    eyebrow: 'Appointments',
+    title: 'Schedule an Appointment',
+    subtitle: 'Pick a time that works for you — a consultation, a site visit, or a pickup. Choose a slot below and you’ll get a confirmation with all the details.',
+    loading: 'Loading available times…',
+    iframeTitle: 'Schedule an appointment with Manufacturing Green Products',
+    talkPrefix: 'Prefer to talk now? Call ',
+    talkMid: ' or email ',
+    talkSuffix: '.',
+  },
 }
 
 export type Dictionary = typeof en

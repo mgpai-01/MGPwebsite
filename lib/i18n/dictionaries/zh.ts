@@ -170,4 +170,14 @@ export const zh: Dictionary = {
     rights: '版权所有。',
     certs: 'ISPM-15 认证 · WPA 董事 · Woodpack Global 成员',
   },
+  schedulePage: {
+    eyebrow: '预约',
+    title: '预约会面',
+    subtitle: '选择适合您的时间——咨询、实地参观或提货。在下方选择一个时段，您将收到包含所有详细信息的确认。',
+    loading: '正在加载可用时间…',
+    iframeTitle: '与 Manufacturing Green Products 预约',
+    talkPrefix: '想现在联系？请致电 ',
+    talkMid: ' 或发送邮件至 ',
+    talkSuffix: '。',
+  },
 }

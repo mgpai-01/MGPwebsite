@@ -170,4 +170,14 @@ export const es: Dictionary = {
     rights: 'Todos los derechos reservados.',
     certs: 'Certificado ISPM-15 · Director de WPA · Miembro de Woodpack Global',
   },
+  schedulePage: {
+    eyebrow: 'Citas',
+    title: 'Agenda una cita',
+    subtitle: 'Elige el horario que mejor te convenga — una consulta, una visita o una recolección. Selecciona un espacio abajo y recibirás una confirmación con todos los detalles.',
+    loading: 'Cargando horarios disponibles…',
+    iframeTitle: 'Agenda una cita con Manufacturing Green Products',
+    talkPrefix: '¿Prefieres hablar ahora? Llama al ',
+    talkMid: ' o escribe a ',
+    talkSuffix: '.',
+  },
 }
