@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import CalendlyEmbed from '@/components/CalendlyEmbed'
 
 export const metadata: Metadata = {
   title: 'Schedule an Appointment',
@@ -17,6 +18,10 @@ export default function SchedulePage() {
 
   return (
     <>
+      {/* Open the connection to Calendly early so the widget loads faster. */}
+      <link rel="preconnect" href="https://calendly.com" />
+      <link rel="preconnect" href="https://assets.calendly.com" crossOrigin="" />
+      <link rel="dns-prefetch" href="https://calendly.com" />
       <Header />
       <main className="bg-surface px-gutter py-section-padding">
         <div className="max-w-container-max mx-auto flex flex-col gap-stack-lg">
@@ -31,19 +36,8 @@ export default function SchedulePage() {
             </p>
           </div>
 
-          {/* Calendly inline embed */}
-          <div
-            className="sched-in sched-in-2 overflow-hidden border border-outline-variant bg-surface-container-lowest"
-            style={{ minHeight: 760 }}
-          >
-            <iframe
-              src={embedUrl}
-              title="Schedule an appointment with Manufacturing Green Products"
-              className="w-full"
-              style={{ height: 760, border: 0 }}
-              loading="lazy"
-            />
-          </div>
+          {/* Calendly inline embed with branded loading state */}
+          <CalendlyEmbed url={embedUrl} />
 
           <p className="sched-in sched-in-3 font-body-md text-body-md text-on-surface-variant">
             Prefer to talk now? Call{' '}
