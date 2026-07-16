@@ -30,7 +30,7 @@ const MAX_DWELL_MS = 14000 // cap on the hold for tall sections being panned
 const PAN_SPEED = 42 // px/sec slow-pan reading speed for taller-than-screen sections
 const TOP_GAP = 20 // breathing room above a top-aligned section
 const UI_IDLE_MS = 4000 // hide the on-screen chrome after this much no-input
-const MANUAL_RESUME_MS = 1200 // after a hand-scroll stops, resume the loop from there
+const MANUAL_RESUME_MS = 2800 // after a hand-scroll stops, wait this long before resuming
 
 type SubPhase = 'enter' | 'dwell'
 type Plan = { enterY: number; panToY: number; dwellMs: number }
@@ -328,7 +328,13 @@ export default function PresentDeck() {
           }
         }
         idxRef.current = best
-        planRef.current = null // re-plan: glide to that section, then continue the loop
+        // Resume by holding exactly where they left off — no jarring re-center
+        // glide — then continue the loop forward from the next section.
+        const y = window.scrollY
+        planRef.current = { enterY: y, panToY: y, dwellMs: DWELL_MS }
+        enterFromRef.current = y
+        subPhaseRef.current = 'dwell'
+        phaseStartRef.current = performance.now()
       }
       manualRef.current = false
     }
