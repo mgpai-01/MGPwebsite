@@ -96,6 +96,7 @@ export default function PresentDeck() {
   const uiTimerRef = useRef<ReturnType<typeof setTimeout>>()
   const manualRef = useRef(false) // true while the viewer is hand-scrolling
   const manualTimerRef = useRef<ReturnType<typeof setTimeout>>()
+  const maxScrollRef = useRef(1) // cached page scroll range, for the progress bar
 
   const exit = useCallback(() => router.push('/'), [router])
 
@@ -214,11 +215,20 @@ export default function PresentDeck() {
     enterFromRef.current = 0
     phaseStartRef.current = performance.now()
     lastFrameRef.current = performance.now()
+    maxScrollRef.current = Math.max(1, document.documentElement.scrollHeight - window.innerHeight)
     window.scrollTo(0, 0)
 
     const step = (now: number) => {
       const dt = now - lastFrameRef.current
       lastFrameRef.current = now
+
+      // Progress bar tracks the actual scroll position — so it moves while the
+      // loop auto-scrolls, moves with the viewer's hand-scroll, and picks right
+      // back up when the loop resumes. Uses cached range (no per-frame layout).
+      if (barRef.current) {
+        const r = Math.min(1, Math.max(0, window.scrollY / maxScrollRef.current))
+        barRef.current.style.transform = `scaleX(${r})`
+      }
 
       const container = containerRef.current
       const count = container ? container.children.length : 0
@@ -239,6 +249,7 @@ export default function PresentDeck() {
 
       const viewH = window.innerHeight
       const maxScroll = Math.max(1, document.documentElement.scrollHeight - viewH)
+      maxScrollRef.current = maxScroll
       const clamp = (y: number) => Math.max(0, Math.min(maxScroll, y))
 
       // Measure the current section on demand and build its glide/hold plan.
@@ -287,17 +298,6 @@ export default function PresentDeck() {
         }
       }
 
-      // Segment-based progress bar.
-      if (barRef.current) {
-        const active = planRef.current
-        const sub =
-          active && subPhaseRef.current === 'dwell'
-            ? Math.min(1, (now - phaseStartRef.current) / active.dwellMs)
-            : 0
-        const ratio = count ? Math.min(1, (idxRef.current + sub) / count) : 0
-        barRef.current.style.transform = `scaleX(${ratio})`
-      }
-
       rafRef.current = requestAnimationFrame(step)
     }
 
@@ -340,6 +340,11 @@ export default function PresentDeck() {
     }
 
     const markManual = () => {
+      if (!manualRef.current) {
+        // Entering manual: refresh the page range once so the progress bar
+        // tracks the hand-scroll accurately (no per-frame layout reads).
+        maxScrollRef.current = Math.max(1, document.documentElement.scrollHeight - window.innerHeight)
+      }
       manualRef.current = true
       wakeUi()
       if (manualTimerRef.current) clearTimeout(manualTimerRef.current)
@@ -450,7 +455,7 @@ export default function PresentDeck() {
       <div className="fixed inset-x-0 top-0 z-[60] h-[3px] bg-black/10">
         <div
           ref={barRef}
-          className="h-full origin-left bg-primary transition-transform duration-300 ease-out"
+          className="h-full origin-left bg-primary"
           style={{ transform: 'scaleX(0)' }}
         />
       </div>
