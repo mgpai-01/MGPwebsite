@@ -9,13 +9,16 @@ import { useT } from '@/lib/i18n'
 const PALLET_UNIVERSITY_URL =
   'https://thepalletuniversity.com/?utm_source=mgpwebsite&utm_medium=referral&utm_campaign=pallet-university'
 
+const PALLET_COLLECTIVE_URL =
+  'https://palletcollective.com/?utm_source=mgpwebsite&utm_medium=referral&utm_campaign=pallet-collective'
+
 const imagesAndLinks: { image?: string; iconType?: 'leaf'; wide?: boolean; link?: { href: string; trackEvent?: string } }[] = [
   { image: '/wpa.png', link: { href: 'https://www.westernpallet.org/board-directors/' } },
   { image: '/woodpack.png', link: { href: 'https://woodpackglobal.org/members/default.asp?id=68677551' } },
   { image: '/samsara.png' },
   { iconType: 'leaf' },
   { image: '/pallet-university.png', link: { href: PALLET_UNIVERSITY_URL, trackEvent: 'pallet_university_click' } },
-  { image: '/pallet-collective.png', wide: true, link: { href: 'https://palletcollective.com/' } },
+  { image: '/pallet-collective.png', wide: true, link: { href: PALLET_COLLECTIVE_URL, trackEvent: 'pallet_collective_click' } },
 ]
 
 function LeafIcon() {

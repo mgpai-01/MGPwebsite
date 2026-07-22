@@ -58,7 +58,7 @@ export const en = {
   sustainability: {
     label: 'Sustainability',
     heading: 'Standards. Stewardship. Leadership.',
-    body: 'Active seats on the industry’s top boards, plus rigorous environmental practices — from forest sourcing to final delivery. Sustainability runs deeper than a claim; it’s how we operate.',
+    body: 'Board seats on the industry’s top associations, national and international partner networks, verified fleet tracking, and rigorous environmental practices — from forest sourcing to final delivery. Sustainability runs deeper than a claim; it’s how we operate.',
     learnMore: 'Learn more',
     items: [
       { title: 'WPA Director', body: 'A seat on the Western Pallet Association board — helping shape industry standards, safety practices, and sustainability policy across the West Coast supply chain.' },

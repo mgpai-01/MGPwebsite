@@ -60,7 +60,7 @@ export const es: Dictionary = {
   sustainability: {
     label: 'Sostenibilidad',
     heading: 'Estándares. Responsabilidad. Liderazgo.',
-    body: 'Asientos activos en las principales asociaciones de la industria, además de prácticas ambientales rigurosas — desde el origen de la madera hasta la entrega final. La sostenibilidad va más allá de una promesa; es nuestra forma de operar.',
+    body: 'Asientos en las juntas de las principales asociaciones de la industria, redes nacionales e internacionales de socios, seguimiento de flota verificado y prácticas ambientales rigurosas — desde el origen de la madera hasta la entrega final. La sostenibilidad va más allá de una promesa; es nuestra forma de operar.',
     learnMore: 'Más información',
     items: [
       { title: 'Director de WPA', body: 'Un asiento en la junta directiva de la Western Pallet Association — ayudando a definir los estándares de la industria, las prácticas de seguridad y las políticas de sostenibilidad en toda la cadena de suministro de la Costa Oeste.' },
