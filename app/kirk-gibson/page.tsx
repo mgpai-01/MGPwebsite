@@ -13,7 +13,7 @@ export default function KirkGibsonPage() {
       <Header />
       <main>
         {/* Hero */}
-        <section className="pt-40 pb-stack-lg px-gutter bg-surface">
+        <section className="pt-28 md:pt-40 pb-stack-lg px-gutter bg-surface">
           <div className="max-w-container-max mx-auto flex flex-col gap-stack-md">
             <a href="/" className="font-label-caps text-label-caps uppercase text-primary hover:underline self-start">
               ← {p.backToHome}
