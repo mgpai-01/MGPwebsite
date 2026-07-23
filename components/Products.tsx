@@ -9,6 +9,10 @@ const images = [
   'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1200&q=80',
 ]
 
+// The Kirk Gibson card gets its own dedicated detail page instead of
+// jumping straight to the quote form.
+const learnMoreHrefs = ['#quote', '#quote', '#quote', '/kirk-gibson']
+
 export default function Products() {
   const { t } = useT()
   return (
@@ -34,7 +38,7 @@ export default function Products() {
                   </li>
                 ))}
               </ul>
-              <a href="#quote" className="font-label-caps text-label-caps uppercase text-primary border-b-2 border-primary self-start hover:text-primary-container transition-colors pb-1 mt-stack-sm">{t.products.learnMore}</a>
+              <a href={learnMoreHrefs[i]} className="font-label-caps text-label-caps uppercase text-primary border-b-2 border-primary self-start hover:text-primary-container transition-colors pb-1 mt-stack-sm">{t.products.learnMore}</a>
             </div>
           ))}
         </div>

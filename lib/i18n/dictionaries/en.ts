@@ -178,6 +178,31 @@ export const en = {
     talkMid: ' or email ',
     talkSuffix: '.',
   },
+  kirkPage: {
+    backToHome: 'Back to home',
+    eyebrow: 'Our Automation',
+    title: 'Meet Kirk Gibson',
+    tagline: 'The robot that salvages what other pallet plants throw away.',
+    storyHeading: 'Why we bought Kirk',
+    storyParagraphs: [
+      'Every year, millions of damaged pallets end up in landfills. The reason is simple. Taking them apart by hand is slow, dangerous, and rarely worth the labor. Crowbars slip. Nails fly. Good lumber gets wasted.',
+      'We watched this happen for too long. So we invested in an Alliance Automation Robotic Pallet Dismantler and named him Kirk Gibson, after the Dodgers legend who took a swing on a bad leg and won the 1988 World Series.',
+      'Kirk swings on our behalf every day. He pulls apart damaged pallets, salvages the reusable lumber, and never gets hurt doing it.',
+    ],
+    howHeading: 'How Kirk works',
+    howSteps: [
+      { title: 'Load', body: 'Damaged pallets are fed onto the intake line.' },
+      { title: 'Strip', body: 'Kirk isolates each board and removes fasteners without splitting the wood.' },
+      { title: 'Sort', body: 'Reusable lumber is separated from waste and stacked by grade.' },
+      { title: 'Return', body: 'The recovered boards go straight back into our recycled and repaired pallet lines.' },
+    ],
+    namedAfterHeading: 'Why "Kirk Gibson"?',
+    namedAfterBody: 'A Dodger swung on a bad leg and hit the walk-off that changed the 1988 World Series. Our Kirk keeps swinging too. Thousands of pallets a month.',
+    ctaHeading: 'See what Kirk saves',
+    ctaBody: 'Every recycled and repaired pallet we ship starts with lumber Kirk recovered.',
+    ctaProductsLabel: 'View our pallets',
+    ctaQuoteLabel: 'Get a quote',
+  },
 }
 
 export type Dictionary = typeof en
