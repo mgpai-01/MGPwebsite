@@ -1,23 +1,50 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import { useT } from '@/lib/i18n'
 
 export default function Hero() {
   const { t } = useT()
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  // iOS Safari sometimes stalls autoplay even with muted+playsInline (Low
+  // Power Mode, backgrounded tab restart, etc.), which surfaces a play
+  // button. Kicking play() imperatively on mount avoids that fallback UI.
+  useEffect(() => {
+    const el = videoRef.current
+    if (!el) return
+    const tryPlay = () => { void el.play().catch(() => {}) }
+    tryPlay()
+    // Retry on visibility change (returning from a background tab) and on
+    // any first touch, which is enough to satisfy iOS gesture policies.
+    document.addEventListener('visibilitychange', tryPlay)
+    document.addEventListener('touchstart', tryPlay, { once: true })
+    return () => {
+      document.removeEventListener('visibilitychange', tryPlay)
+      document.removeEventListener('touchstart', tryPlay)
+    }
+  }, [])
+
   return (
     <section className="relative overflow-hidden bg-white min-h-[100vh]">
       <div className="absolute inset-0 overflow-hidden bg-white">
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
-          className="absolute top-0 right-0 h-full w-[120%] object-cover translate-x-[8%]"
+          preload="auto"
+          disablePictureInPicture
+          disableRemotePlayback
+          className="absolute top-0 right-0 h-full w-[120%] md:w-[105%] object-cover translate-x-[8%] md:translate-x-0"
         >
           <source src="/mp_.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent" />
+        {/* Gradient overlay: heavy on phones (protects text over the video),
+            softer on iPad+ so the pallet visual shows through, minimal on
+            desktop where there's enough horizontal room. */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent md:from-white md:via-white/70 md:to-transparent lg:via-white/60" />
       </div>
 
       <div className="relative z-10 py-section-padding px-gutter">
