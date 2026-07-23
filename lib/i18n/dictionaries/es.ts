@@ -46,9 +46,9 @@ export const es: Dictionary = {
         specs: ['Envío el mismo día', 'Técnicos capacitados en sitio', 'Todas las clasificaciones reparadas en sitio', 'Cero costos de transporte'],
       },
       {
-        title: 'Nuestra Automatización',
-        body: 'Nuestra línea de producción funciona con Alliance Automation — el estándar de la industria en la fabricación automatizada de tarimas. Sistemas de clavado de precisión y manejo de materiales integrado ofrecen tolerancias consistentes a alto volumen, con menos tiempo de inactividad y una producción más precisa que el ensamblaje manual.',
-        specs: ['Impulsado por Alliance Automation', 'Sistemas de clavado automatizados', 'Tolerancias consistentes a escala', 'Mayor producción vs. ensamblaje manual'],
+        title: 'Conoce a Kirk Gibson',
+        body: 'Le pusimos Kirk Gibson a nuestro Desmontador Robótico de Tarimas de Alliance Automation, y no duerme. Kirk desarma tarimas dañadas y recupera la madera reutilizable todo el día, más rápido que un equipo manual y sin que nadie tenga que usar una palanca. Cada tabla que rescata vuelve directo a nuestro inventario de tarimas recicladas y reparadas.',
+        specs: ['Conoce a Kirk Gibson, nuestro desmontador robótico', 'Robótica de Alliance Automation', 'Recuperación automática de madera', 'Mayor producción que el desmontaje manual'],
       },
     ],
   },

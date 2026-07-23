@@ -46,9 +46,9 @@ export const zh: Dictionary = {
         specs: ['当日派遣', '专业现场技术人员', '所有等级现场修复', '零运输成本'],
       },
       {
-        title: '我们的自动化系统',
-        body: '我们的生产线采用 Alliance Automation 系统——托盘自动化制造行业的标杆。精密工程的自动钉合系统与集成物料处理设备,以高产能实现稳定的公差控制,相较人工组装,停工时间更少、输出更一致。',
-        specs: ['采用 Alliance Automation 系统', '自动化钉合系统', '规模化下的稳定公差', '相较人工组装的更高产能'],
+        title: '认识 Kirk Gibson',
+        body: '我们给自己的 Alliance Automation 机器人托盘拆解机取名叫 Kirk Gibson,他从不休息。Kirk 全天不停地拆解损坏的托盘并回收可再用的木材,速度比人工团队快得多,也不用有人挥动撬棍。他抢救下来的每一块木板都会直接回到我们的再生和修复托盘库存中。',
+        specs: ['认识我们的机器人拆解机 Kirk Gibson', '采用 Alliance Automation 机器人技术', '自动木材回收', '相较人工拆解更高的产能'],
       },
     ],
   },

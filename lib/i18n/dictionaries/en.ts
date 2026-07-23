@@ -44,9 +44,9 @@ export const en = {
         specs: ['Same-day dispatch', 'Trained on-site technicians', 'All grades repaired in place', 'Zero transportation costs'],
       },
       {
-        title: 'Our Automation',
-        body: 'Our production floor runs on Alliance Automation — the industry standard in automated pallet manufacturing. Precision-engineered nailing systems and integrated material handling deliver consistent tolerances at high volume, with less downtime and tighter output than manual assembly can match.',
-        specs: ['Powered by Alliance Automation', 'Automated nailing systems', 'Consistent tolerances at scale', 'Higher throughput vs. manual builds'],
+        title: 'Meet Kirk Gibson',
+        body: 'We named our Alliance Automation Robotic Pallet Dismantler Kirk Gibson, and he doesn’t sleep. Kirk pulls damaged pallets apart and salvages the reusable lumber all day long, faster than a manual crew and without anyone swinging a crowbar. Every board he saves goes right back into our recycled and repaired pallet inventory.',
+        specs: ['Meet Kirk Gibson, our robotic dismantler', 'Alliance Automation robotics', 'Automatic lumber recovery', 'Higher throughput than manual teardown'],
       },
     ],
   },
