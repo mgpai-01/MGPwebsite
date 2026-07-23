@@ -47,8 +47,8 @@ export const es: Dictionary = {
       },
       {
         title: 'Nuestra Automatización',
-        body: 'Sistemas robóticos con inteligencia artificial se encargan del apilado, la clasificación y la inspección de calidad a velocidad de máquina. Mayor capacidad, tolerancias más precisas y producción constante — 24/7, con control de calidad por visión que detecta defectos invisibles al ojo humano.',
-        specs: ['Robótica con IA', 'Hasta 3× más producción', 'Control de calidad por visión', 'Operación 24/7 sin personal'],
+        body: 'Nuestra línea de producción funciona con Alliance Automation — el estándar de la industria en la fabricación automatizada de tarimas. Sistemas de clavado de precisión y manejo de materiales integrado ofrecen tolerancias consistentes a alto volumen, con menos tiempo de inactividad y una producción más precisa que el ensamblaje manual.',
+        specs: ['Impulsado por Alliance Automation', 'Sistemas de clavado automatizados', 'Tolerancias consistentes a escala', 'Mayor producción vs. ensamblaje manual'],
       },
     ],
   },

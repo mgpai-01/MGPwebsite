@@ -45,8 +45,8 @@ export const en = {
       },
       {
         title: 'Our Automation',
-        body: 'AI-powered robotic systems handle stacking, sorting, and quality inspection at machine speed. Higher throughput, tighter tolerances, and consistent output — 24/7, with vision-based QC catching defects no human can spot.',
-        specs: ['AI-powered robotics', 'Up to 3× throughput', 'Vision-based quality control', '24/7 lights-out operation'],
+        body: 'Our production floor runs on Alliance Automation — the industry standard in automated pallet manufacturing. Precision-engineered nailing systems and integrated material handling deliver consistent tolerances at high volume, with less downtime and tighter output than manual assembly can match.',
+        specs: ['Powered by Alliance Automation', 'Automated nailing systems', 'Consistent tolerances at scale', 'Higher throughput vs. manual builds'],
       },
     ],
   },
