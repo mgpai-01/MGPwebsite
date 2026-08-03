@@ -15,7 +15,10 @@ export default function KirkGibsonPage() {
       <main>
         {/* Hero — the dismantler loop sits inside the hero block so the
             headline and the machine read as one unit. */}
-        <section className="pt-28 md:pt-40 pb-stack-md px-gutter bg-surface">
+        {/* No tall top padding here: globals.css already offsets body by
+            88px (72px mobile) to clear the fixed header, so anything more
+            double-counts it and leaves a band of dead space. */}
+        <section className="pt-12 md:pt-16 pb-stack-md px-gutter bg-surface">
           <div className="max-w-container-max mx-auto flex flex-col gap-stack-md">
             <a href="/" className="font-label-caps text-label-caps uppercase text-primary hover:underline self-start">
               ← {p.backToHome}
