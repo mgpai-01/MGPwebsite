@@ -183,6 +183,9 @@ export const en = {
     eyebrow: 'Our Automation',
     title: 'Meet Kirk Gibson',
     tagline: 'The robot that salvages what other pallet plants throw away.',
+    videoCaption: 'Kirk at work: the Alliance Automation robotic dismantler on our Fontana floor. Damaged pallets in, graded lumber out.',
+    videoPause: 'Pause',
+    videoPlay: 'Play',
     storyHeading: 'Why we bought Kirk',
     storyParagraphs: [
       'Every year, millions of damaged pallets end up in landfills. The reason is simple. Taking them apart by hand is slow, dangerous, and rarely worth the labor. Crowbars slip. Nails fly. Good lumber gets wasted.',

@@ -2,6 +2,7 @@
 
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import KirkVideo from '@/components/KirkVideo'
 import { useT } from '@/lib/i18n'
 
 export default function KirkGibsonPage() {
@@ -12,8 +13,9 @@ export default function KirkGibsonPage() {
     <>
       <Header />
       <main>
-        {/* Hero */}
-        <section className="pt-28 md:pt-40 pb-stack-lg px-gutter bg-surface">
+        {/* Hero — the dismantler loop sits inside the hero block so the
+            headline and the machine read as one unit. */}
+        <section className="pt-28 md:pt-40 pb-stack-md px-gutter bg-surface">
           <div className="max-w-container-max mx-auto flex flex-col gap-stack-md">
             <a href="/" className="font-label-caps text-label-caps uppercase text-primary hover:underline self-start">
               ← {p.backToHome}
@@ -23,6 +25,11 @@ export default function KirkGibsonPage() {
               <h1 className="font-headline-xl text-headline-xl uppercase text-on-surface">{p.title}</h1>
               <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">{p.tagline}</p>
             </div>
+            <KirkVideo
+              caption={p.videoCaption}
+              pauseLabel={p.videoPause}
+              playLabel={p.videoPlay}
+            />
           </div>
         </section>
 
