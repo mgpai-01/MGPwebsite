@@ -14,6 +14,8 @@ export default function KirkVideo({ caption, pauseLabel, playLabel }: Props) {
   // override the user and restart playback when they scroll back.
   const userPaused = useRef(false)
   const [playing, setPlaying] = useState(true)
+  const [revealed, setRevealed] = useState(false)
+  const [reduced, setReduced] = useState(false)
 
   useEffect(() => {
     const el = videoRef.current
@@ -22,11 +24,13 @@ export default function KirkVideo({ caption, pauseLabel, playLabel }: Props) {
     // `autoPlay` fires before this effect, so reduced-motion users need an
     // explicit pause rather than a missing attribute. They keep the poster
     // frame and can opt in with the toggle.
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReduced) {
       el.pause()
       userPaused.current = true
+      setReduced(true)
       setPlaying(false)
-      return
+      setRevealed(true)
     }
 
     // Same iOS Safari autoplay stall the homepage hero works around: muted +
@@ -35,16 +39,20 @@ export default function KirkVideo({ caption, pauseLabel, playLabel }: Props) {
       if (userPaused.current) return
       void el.play().catch(() => {})
     }
-    tryPlay()
+    if (!prefersReduced) tryPlay()
     document.addEventListener('visibilitychange', tryPlay)
     document.addEventListener('touchstart', tryPlay, { once: true })
 
-    // The band sits below the fold, so don't burn battery looping a 9s clip
-    // while someone reads the rest of the page.
+    // Doubles as the scroll-reveal trigger and as a battery guard, so a 9s
+    // loop isn't running while someone reads the rest of the page.
     const io = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) tryPlay()
-        else el.pause()
+        if (entry.isIntersecting) {
+          setRevealed(true)
+          tryPlay()
+        } else {
+          el.pause()
+        }
       },
       { threshold: 0.15 },
     )
@@ -72,15 +80,28 @@ export default function KirkVideo({ caption, pauseLabel, playLabel }: Props) {
   }
 
   return (
-    <figure className="w-full max-w-5xl flex flex-col gap-stack-sm m-0">
-      <div className="relative border border-outline-variant bg-white shadow-[8px_8px_0_0_theme(colors.surface-tint)]">
+    <figure className="w-full flex flex-col gap-stack-sm m-0">
+      {/* Without JS the observer never runs, so the reveal state would strand
+          the video at opacity-0. Keep it visible in that case. */}
+      <noscript>
+        <style>{`.kirk-reveal{opacity:1!important;transform:none!important}`}</style>
+      </noscript>
+
+      <div
+        className={[
+          'kirk-reveal relative border border-outline-variant bg-white',
+          'shadow-[6px_6px_0_0_theme(colors.surface-tint)] md:shadow-[14px_14px_0_0_theme(colors.surface-tint)]',
+          reduced ? '' : 'transition-[opacity,transform] duration-700 ease-out',
+          revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6',
+        ].join(' ')}
+      >
         <video
           ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           poster="/kirk-gibson-poster.webp"
           disablePictureInPicture
           disableRemotePlayback
@@ -93,14 +114,14 @@ export default function KirkVideo({ caption, pauseLabel, playLabel }: Props) {
           type="button"
           onClick={toggle}
           aria-label={playing ? pauseLabel : playLabel}
-          className="absolute bottom-3 right-3 flex items-center gap-2 border border-outline-variant bg-white/85 backdrop-blur-sm px-3 py-1.5 font-label-caps text-[11px] uppercase tracking-[0.14em] text-on-surface hover:bg-white transition-colors"
+          className="absolute bottom-4 right-4 inline-flex items-center justify-center gap-2 min-h-[44px] min-w-[44px] px-4 border border-outline-variant bg-white/85 backdrop-blur-sm font-label-caps text-[11px] uppercase tracking-[0.14em] text-on-surface hover:bg-white active:bg-surface-container-low transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         >
           {/* Inline SVG rather than ❙❙ / ▶ glyphs, which render at wildly
               different weights and baselines depending on the fallback font. */}
           <svg
             aria-hidden="true"
             viewBox="0 0 10 12"
-            className="w-[9px] h-[11px] fill-primary"
+            className="w-[9px] h-[11px] fill-primary shrink-0"
           >
             {playing ? (
               <>
@@ -115,7 +136,7 @@ export default function KirkVideo({ caption, pauseLabel, playLabel }: Props) {
         </button>
       </div>
 
-      <figcaption className="font-body-md text-body-md text-on-surface-variant">
+      <figcaption className="font-body-md text-body-md text-on-surface-variant max-w-2xl">
         {caption}
       </figcaption>
     </figure>

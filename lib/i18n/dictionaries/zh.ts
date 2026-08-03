@@ -185,7 +185,7 @@ export const zh: Dictionary = {
     eyebrow: '我们的自动化系统',
     title: '认识 Kirk Gibson',
     tagline: '这个机器人抢救别人扔掉的木材。',
-    videoCaption: 'Kirk 工作实况:位于方塔纳厂区的 Alliance Automation 机器人拆解机。损坏的托盘进去,分级木材出来。',
+    videoCaption: 'Alliance Automation 机器人托盘拆解机 —— 我们在方塔纳运行的这台设备。损坏的托盘进去,分级木材出来。',
     videoPause: '暂停',
     videoPlay: '播放',
     storyHeading: '我们为什么买 Kirk',

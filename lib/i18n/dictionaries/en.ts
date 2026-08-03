@@ -183,7 +183,7 @@ export const en = {
     eyebrow: 'Our Automation',
     title: 'Meet Kirk Gibson',
     tagline: 'The robot that salvages what other pallet plants throw away.',
-    videoCaption: 'Kirk at work: the Alliance Automation robotic dismantler on our Fontana floor. Damaged pallets in, graded lumber out.',
+    videoCaption: 'The Alliance Automation robotic pallet dismantler — the machine we run in Fontana. Damaged pallets in, graded lumber out.',
     videoPause: 'Pause',
     videoPlay: 'Play',
     storyHeading: 'Why we bought Kirk',

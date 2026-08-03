@@ -185,7 +185,7 @@ export const es: Dictionary = {
     eyebrow: 'Nuestra Automatización',
     title: 'Conoce a Kirk Gibson',
     tagline: 'El robot que rescata lo que otras plantas de tarimas tiran a la basura.',
-    videoCaption: 'Kirk trabajando: el desmontador robótico de Alliance Automation en nuestra planta de Fontana. Entran tarimas dañadas, sale madera clasificada.',
+    videoCaption: 'El desmontador robótico de tarimas de Alliance Automation: la máquina que operamos en Fontana. Entran tarimas dañadas, sale madera clasificada.',
     videoPause: 'Pausar',
     videoPlay: 'Reproducir',
     storyHeading: 'Por qué compramos a Kirk',
