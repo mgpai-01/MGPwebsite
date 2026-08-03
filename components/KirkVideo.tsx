@@ -21,16 +21,26 @@ export default function KirkVideo({ caption, pauseLabel, playLabel }: Props) {
     const el = videoRef.current
     if (!el) return
 
+    // Source is chosen here rather than via <source media>, which browsers
+    // don't reliably honour inside <video>. Phones render this at ~290-360
+    // CSS px, so the 1080p desktop file is ~1.6MB of wasted cellular data.
+    const mobile = window.matchMedia('(max-width: 768px)').matches
+    el.src = mobile ? '/kirk-gibson-mobile.mp4' : '/kirk-gibson.mp4'
+
     // `autoPlay` fires before this effect, so reduced-motion users need an
-    // explicit pause rather than a missing attribute. They keep the poster
-    // frame and can opt in with the toggle.
+    // explicit pause rather than a missing attribute. Data Saver gets the
+    // same treatment: hold the poster and let them opt in. Both keep the
+    // frame visible and reachable via the toggle.
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (prefersReduced) {
+    const saveData = Boolean(
+      (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData,
+    )
+    if (prefersReduced || saveData) {
       el.pause()
       userPaused.current = true
-      setReduced(true)
       setPlaying(false)
       setRevealed(true)
+      if (prefersReduced) setReduced(true)
     }
 
     // Same iOS Safari autoplay stall the homepage hero works around: muted +
@@ -39,7 +49,7 @@ export default function KirkVideo({ caption, pauseLabel, playLabel }: Props) {
       if (userPaused.current) return
       void el.play().catch(() => {})
     }
-    if (!prefersReduced) tryPlay()
+    if (!prefersReduced && !saveData) tryPlay()
     document.addEventListener('visibilitychange', tryPlay)
     document.addEventListener('touchstart', tryPlay, { once: true })
 
@@ -106,9 +116,7 @@ export default function KirkVideo({ caption, pauseLabel, playLabel }: Props) {
           disablePictureInPicture
           disableRemotePlayback
           className="block w-full aspect-video object-cover"
-        >
-          <source src="/kirk-gibson.mp4" type="video/mp4" />
-        </video>
+        />
 
         <button
           type="button"
