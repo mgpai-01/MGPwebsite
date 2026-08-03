@@ -6,7 +6,9 @@ const images = [
   'https://lh3.googleusercontent.com/aida-public/AB6AXuC58pZmIaGXyKalRmmGd7lzOtXaeMMqvrWWgPxOmKTMjaT-cCVv5HHzVuiHJHAJ3UyNZ-Mb6t1hOToPvxkc5QtFIsKEwmwYjt4z9tFpJPpvEu5eccvNeYorkVqkxK0xl0NzLOTBQ9uFUkw-v4PaK9j-XOJNsVil2TH-r5qF72_OWh2b-xr3MPYywxcmaVaGAOmanP_o2AGHLQGGpWIJpJtE5UrRE9FgJIpwUDtkrlBtKEP7SjhaBLdW1wKvdc-U6pNj8zlpouWhcg',
   'https://lh3.googleusercontent.com/aida-public/AB6AXuDeGmfZM0iG362m0L7JX18_lBBcdKOJHWK4dXlsoPRL9JbMAMxHCfNwBlJBQeBRxh1LxwwzW1kx9tTAUyjTVvUERGGgfGH1e4mFjpJoiacOcOsrtOYTV3dwOsJ1KOL41qfdHeUarwqha6EsvQJBN6dOCIhcUDgNUcwWn1cBbYvwdURbl1TlSCoTP6C2e_q6_TenMD7HDvGwSZ8FPVHn0J6IipIZ-5436McbJeXhNCgGU-OqU-AmcCmyavvjz3WibL318n7Hs_QZtg',
   'https://lh3.googleusercontent.com/aida-public/AB6AXuBUecrgoQCMYgVJScPepNVMNI1qnOe5EAcsp9ZUSsKoLIwMhyFlYMcBvyTuPw7UH01QiPBhK5s3Rz7HmiwgkJZYbGcs1u-5OiYeFtbe8VGz_pR5x9idsMrSFb7WPI4ny5F62ZeNSgHiTOmMNqBwrvcHXC2wsq-37Tej-7PVXl6EaR9bE7Gm68xwomuc5IvDaxHbFJcQFGq-6Jl5PHQK43rIxLpZahRyldoV2vRmrG5MtK4abIEsH7vcz8aowGCJE2mnj8dwZKEiVw',
-  'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1200&q=80',
+  // Framed from the Alliance dismantler CAD render so the card shows the
+  // actual machine. Served locally — the others are still hotlinked.
+  '/kirk-gibson-card.webp',
 ]
 
 // The Kirk Gibson card gets its own dedicated detail page instead of
