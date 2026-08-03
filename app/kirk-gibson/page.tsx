@@ -3,6 +3,7 @@
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import KirkVideo from '@/components/KirkVideo'
+import { fadeNavigate } from '@/lib/pageTransition'
 import { useT } from '@/lib/i18n'
 
 export default function KirkGibsonPage() {
@@ -20,7 +21,11 @@ export default function KirkGibsonPage() {
             double-counts it and leaves a band of dead space. */}
         <section className="pt-12 md:pt-16 pb-stack-md px-gutter bg-surface">
           <div className="max-w-container-max mx-auto flex flex-col gap-stack-md">
-            <a href="/" className="font-label-caps text-label-caps uppercase text-primary hover:underline self-start">
+            <a
+              href="/"
+              onClick={(e) => fadeNavigate(e, '/')}
+              className="font-label-caps text-label-caps uppercase text-primary hover:underline self-start"
+            >
               ← {p.backToHome}
             </a>
             <div className="flex flex-col gap-stack-sm max-w-3xl">
@@ -82,10 +87,10 @@ export default function KirkGibsonPage() {
             <h2 className="font-headline-lg text-headline-lg text-on-primary">{p.ctaHeading}</h2>
             <p className="font-body-lg text-body-lg text-surface-container-high">{p.ctaBody}</p>
             <div className="flex gap-stack-sm flex-wrap">
-              <a href="/#products" className="bg-primary text-on-primary px-stack-md py-stack-sm font-label-caps text-label-caps uppercase hover:bg-primary-container transition-colors no-underline">
+              <a href="/#products" onClick={(e) => fadeNavigate(e, '/#products')} className="bg-primary text-on-primary px-stack-md py-stack-sm font-label-caps text-label-caps uppercase hover:bg-primary-container transition-colors no-underline">
                 {p.ctaProductsLabel}
               </a>
-              <a href="/#quote" className="border-2 border-on-primary text-on-primary px-stack-md py-stack-sm font-label-caps text-label-caps uppercase hover:bg-on-primary hover:text-inverse-surface transition-colors no-underline">
+              <a href="/#quote" onClick={(e) => fadeNavigate(e, '/#quote')} className="border-2 border-on-primary text-on-primary px-stack-md py-stack-sm font-label-caps text-label-caps uppercase hover:bg-on-primary hover:text-inverse-surface transition-colors no-underline">
                 {p.ctaQuoteLabel}
               </a>
             </div>

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { LOCALES, useT, type Locale } from '@/lib/i18n'
+import { fadeNavigate } from '@/lib/pageTransition'
 
 export default function Header() {
   const { t, locale, setLocale } = useT()
@@ -41,21 +42,10 @@ export default function Header() {
   const pick = (l: Locale) => { setLocale(l); setLangOpen(false) }
   const current = LOCALES.find((l) => l.code === locale) ?? LOCALES[0]
 
-  // Fade the current page out before navigating to a different page, so leaving
-  // /schedule (or any page) matches the fade-up entrance instead of hard-flashing.
-  const navigate = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    // Let the browser handle modified clicks (new tab, etc.).
-    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return
-    const dest = new URL(href, window.location.origin)
-    // Same-page hash links keep their native smooth scroll — only fade on real
-    // cross-page navigations.
-    if (dest.pathname === window.location.pathname) { setOpen(false); return }
-    if (typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    e.preventDefault()
-    setOpen(false)
-    document.querySelector('main')?.classList.add('page-leaving')
-    window.setTimeout(() => { window.location.href = href }, 220)
-  }
+  // Shared with in-page links (e.g. the Kirk page's "back to home") so every
+  // cross-page navigation fades out the same way. See lib/pageTransition.
+  const navigate = (e: React.MouseEvent<HTMLAnchorElement>, href: string) =>
+    fadeNavigate(e, href, () => setOpen(false))
 
   return (
     <header className="fixed top-0 left-0 w-full bg-surface/95 backdrop-blur-sm z-50 border-b-2 border-outline-variant">
