@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import LoadingSeal from '@/components/LoadingSeal'
 
 // Calendly booking iframe with a branded loading state that stays up until the
 // widget finishes loading, so viewers see an on-brand placeholder instead of a
@@ -23,7 +24,7 @@ export default function CalendlyEmbed({
     >
       {!loaded && (
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-surface-container-lowest">
-          <span className="h-10 w-10 animate-spin rounded-full border-[3px] border-outline-variant border-t-primary" />
+          <LoadingSeal size={56} />
           <span className="font-label-caps text-label-caps uppercase tracking-[0.14em] text-on-surface-variant">
             {loadingLabel}
           </span>

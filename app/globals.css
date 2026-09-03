@@ -121,3 +121,17 @@ main.page-leaving {
 @media (prefers-reduced-motion: reduce) {
   main, main.page-leaving { animation: none; transition: none; opacity: 1; transform: none; }
 }
+
+/* Branded loading: the MGP seal turns slowly while a green arc sweeps faster
+   around it. The arc carries the speed on purpose — spinning a detailed seal
+   quickly just blurs it, and below about 24px it stops reading as the logo. */
+@keyframes mgp-seal-turn {
+  to { transform: rotate(360deg); }
+}
+.mgp-seal { animation: mgp-seal-turn 2.6s linear infinite; }
+.mgp-seal-arc { animation: mgp-seal-turn 0.9s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mgp-seal,
+  .mgp-seal-arc { animation: none; }
+}
